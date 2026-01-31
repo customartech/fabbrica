@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Layihələr - Fabbrica Mebel - Azərbaycanın ən Yaxşı Mebel Mağazası</title>
+    <title>Project Detail - Fabbrica Mebel - Azərbaycanın ən Yaxşı Mebel Mağazası</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -215,125 +215,169 @@
         <div id="dropdown-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden" onclick="closeAllDropdowns()"></div>
     </nav>
 
-    <!-- HERO SECTION -->
-    <header class="relative h-[40vh] w-full overflow-hidden">
+    <!-- PROJECT HERO SECTION -->
+    <header class="relative h-[60vh] w-full overflow-hidden">
         <!-- Background Image Container -->
         <div class="absolute inset-0 bg-slate-900">
-            <img src="https://images.unsplash.com/photo-1600607686527-6fb886090705?q=80&w=2000&auto=format&fit=crop" 
-                 alt="Layihələr" 
+            <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=80&w=2000&auto=format&fit=crop" 
+                 alt="Modern Living Room Project" 
                  class="w-full h-full object-cover transition-opacity duration-1000">
-            <div class="absolute inset-0 bg-gradient-to-r from-slate-900/70 to-transparent"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
         </div>
         
         <!-- HERO CONTENT WRAPPER -->
         <div class="absolute inset-0 z-10 px-6 md:px-12 flex items-center justify-center">
             <div class="text-center text-white max-w-4xl">
-                <h1 class="text-4xl md:text-6xl font-light mb-6">Layihələrimiz</h1>
-                <p class="text-xl md:text-2xl font-light opacity-90">İlham verən məkanlar, qüsursuz icra</p>
+                <span class="inline-block bg-brand/20 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-semibold mb-4">Project Detail</span>
+                <h1 class="text-4xl md:text-6xl font-light mb-6">Modern Yaşayış Otağı</h1>
+                <p class="text-xl md:text-2xl font-light opacity-90">Mətbəx mebeli</p>
             </div>
         </div>
     </header>
 
-    <!-- PROJECTS GRID SECTION -->
+    <!-- PROJECT DETAILS SECTION -->
     <section class="py-16 md:py-20 px-6 md:px-12 max-w-7xl mx-auto">
-        <!-- Section Header as Image Upload -->
-       <div class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12">
-            <!-- Left Label -->
-            <div class="md:col-span-2">
-                 <span class="inline-block bg-slate-100 text-slate-600 px-4 py-1.5 rounded-full text-xs font-semibold">Xidmətlər</span>
-            </div>
-
-            <!-- Right Content -->
-            <div class="md:col-span-10">
-                <h2 class="text-2xl md:text-3xl font-medium leading-tight mb-8 text-slate-900 max-w-4xl">
-                    Biz sadəcə mebel istehsal etmirik, biz xəyallarınızı reallaşdırırıq. Tam əhatəli xidmətlərimizlə rahatlığınızı təmin edirik.
-                </h2>
+        <!-- Project Info -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
+            <!-- Main Content -->
+            <div class="md:col-span-3">
+                <div class="flex items-center gap-4 mb-6">
+                    <span class="inline-block bg-slate-100 text-slate-600 px-4 py-1.5 rounded-full text-xs font-semibold">Mətbəx mebeli</span>
+                    <h2 class="text-3xl md:text-4xl font-light text-slate-900">Layihə Haqqında</h2>
+                </div>
+                <p class="text-slate-600 leading-relaxed mb-8">
+                    Bu müasir yaşayış otağı layihəsində minimalist dizayn prinsipləri ilə funksionallığın mükəmməl harmoniyası yaradılmışdır. Geniş pəncərələr təbii işığın maksimum daxil olmasını təmin edir, açıq planlama isə məkanın daha geniş və aerodinamik hiss edilməsini yaradır.
+                </p>
                 
-                <div class="flex flex-col md:flex-row gap-8 items-start">
-                    <p class="text-slate-500 text-sm leading-relaxed max-w-md pt-2">
-                        İdeyanın yaranmasından son toxunuşa qədər hər mərhələdə peşəkarlıq. Dizayn, istehsal və montaj bir arada.
-                    </p>
+                <!-- Project Gallery Slider -->
+                <div class="relative mb-8">
+                    <!-- Main Slider Container -->
+                    <div class="relative overflow-hidden rounded-2xl">
+                        <!-- Slider Images -->
+                        <div class="flex transition-transform duration-500 ease-in-out" id="gallery-slider">
+                            <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=80&w=1200&auto=format&fit=crop" 
+                                 alt="Living Room View 1" 
+                                 class="w-full aspect-video object-cover flex-shrink-0">
+                            <img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?q=80&w=1200&auto=format&fit=crop" 
+                                 alt="Living Room View 2" 
+                                 class="w-full aspect-video object-cover flex-shrink-0">
+                            <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=1200&auto=format&fit=crop" 
+                                 alt="Living Room View 3" 
+                                 class="w-full aspect-video object-cover flex-shrink-0">
+                            <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1200&auto=format&fit=crop" 
+                                 alt="Living Room View 4" 
+                                 class="w-full aspect-video object-cover flex-shrink-0">
+                        </div>
+                        
+                        <!-- Navigation Buttons -->
+                        <button onclick="previousSlide()" class="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 backdrop-blur-sm text-slate-900 w-12 h-12 rounded-full flex items-center justify-center hover:bg-white transition-all duration-300 shadow-lg">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button onclick="nextSlide()" class="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 backdrop-blur-sm text-slate-900 w-12 h-12 rounded-full flex items-center justify-center hover:bg-white transition-all duration-300 shadow-lg">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                    
+                    <!-- Thumbnail Navigation -->
+                    <div class="flex gap-2 mt-4 overflow-x-auto">
+                        <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=80&w=200&auto=format&fit=crop" 
+                             alt="Thumbnail 1" 
+                             class="w-20 h-20 object-cover rounded-lg cursor-pointer opacity-60 hover:opacity-100 transition-opacity duration-300 border-2 border-transparent hover:border-brand"
+                             onclick="goToSlide(0)">
+                        <img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?q=80&w=200&auto=format&fit=crop" 
+                             alt="Thumbnail 2" 
+                             class="w-20 h-20 object-cover rounded-lg cursor-pointer opacity-60 hover:opacity-100 transition-opacity duration-300 border-2 border-transparent hover:border-brand"
+                             onclick="goToSlide(1)">
+                        <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=200&auto=format&fit=crop" 
+                             alt="Thumbnail 3" 
+                             class="w-20 h-20 object-cover rounded-lg cursor-pointer opacity-60 hover:opacity-100 transition-opacity duration-300 border-2 border-transparent hover:border-brand"
+                             onclick="goToSlide(2)">
+                        <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=200&auto=format&fit=crop" 
+                             alt="Thumbnail 4" 
+                             class="w-20 h-20 object-cover rounded-lg cursor-pointer opacity-60 hover:opacity-100 transition-opacity duration-300 border-2 border-transparent hover:border-brand"
+                             onclick="goToSlide(3)">
+                    </div>
+                </div>
+
+                <!-- Features -->
+                <h3 class="text-2xl font-light text-slate-900 mb-6">Xüsusiyyətlər</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="flex items-start gap-4">
+                        <i class="fas fa-check-circle text-brand w-6 h-6 mt-1"></i>
+                        <div>
+                            <h4 class="font-semibold text-slate-900 mb-2">Minimalist Dizayn</h4>
+                            <p class="text-slate-600 text-sm">Sadə xətlər və funksional həllər</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <i class="fas fa-check-circle text-brand w-6 h-6 mt-1"></i>
+                        <div>
+                            <h4 class="font-semibold text-slate-900 mb-2">Təbii İşiq</h4>
+                            <p class="text-slate-600 text-sm">Geniş pəncərələr və açıq planlama</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <i class="fas fa-check-circle text-brand w-6 h-6 mt-1"></i>
+                        <div>
+                            <h4 class="font-semibold text-slate-900 mb-2">Premium Materiallar</h4>
+                            <p class="text-slate-600 text-sm">Yüksək keyfiyyətli mebel materialları</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <i class="fas fa-check-circle text-brand w-6 h-6 mt-1"></i>
+                        <div>
+                            <h4 class="font-semibold text-slate-900 mb-2">Ağıllı Həllər</h4>
+                            <p class="text-slate-600 text-sm">Müasir texnologiya ilə inteqrasiya</p>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Projects Grid -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
-            <!-- Project 1 -->
-            <div class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300">
-                <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=80&w=600&auto=format&fit=crop" 
-                     alt="Modern Living Room" 
-                     class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-50 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div class="absolute bottom-0 left-0 right-0 p-6 text-white transform translate-y-0 opacity-100 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
-                    <h3 class="text-xl font-semibold mb-2">Modern Yaşayış Otağı</h3>
-                    <p class="text-sm opacity-90">Mətbəx mebeli</p>
-                    <a href="#" class="inline-block bg-slate-100 text-slate-600 px-4 py-1.5 rounded-full text-xs font-semibold flex items-center gap-2 hover:bg-brand hover:text-white transition-colors mt-4 max-w-fit">
-                        Ətraflı <i class="fas fa-arrow-right w-3 h-3"></i>
-                    </a>
-                </div>
-                            </div>
-
-            <!-- Project 2 -->
-            <div class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300">
-                <img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?q=80&w=600&auto=format&fit=crop" 
-                     alt="Kitchen Design" 
-                     class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-50 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div class="absolute bottom-0 left-0 right-0 p-6 text-white transform translate-y-0 opacity-100 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
-                    <h3 class="text-xl font-semibold mb-2">Lüks Mətbəx</h3>
-                    <p class="text-sm opacity-90">Dəzgah texnologiyası və elegant görünüş</p>
-                    <a href="#" class="inline-block bg-slate-100 text-slate-600 px-4 py-1.5 rounded-full text-xs font-semibold flex items-center gap-2 hover:bg-brand hover:text-white transition-colors mt-4 max-w-fit">
-                        Ətraflı <i class="fas fa-arrow-right w-3 h-3"></i>
-                    </a>
-                </div>
-                            </div>
-
-            <!-- Project 3 -->
-            <div class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300">
-                <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=600&auto=format&fit=crop" 
-                     alt="Bedroom Design" 
-                     class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-50 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div class="absolute bottom-0 left-0 right-0 p-6 text-white transform translate-y-0 opacity-100 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
-                    <h3 class="text-xl font-semibold mb-2">Yuxu Otağı Dizaynı</h3>
-                    <p class="text-sm opacity-90">Yataq otağı mebeli</p>
-                    <a href="#" class="inline-block bg-slate-100 text-slate-600 px-4 py-1.5 rounded-full text-xs font-semibold flex items-center gap-2 hover:bg-brand hover:text-white transition-colors mt-4 max-w-fit">
-                        Ətraflı <i class="fas fa-arrow-right w-3 h-3"></i>
-                    </a>
-                </div>
-                            </div>
-
-            <!-- Project 4 -->
-            <div class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300">
-                <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=600&auto=format&fit=crop" 
-                     alt="Office Design" 
-                     class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-50 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div class="absolute bottom-0 left-0 right-0 p-6 text-white transform translate-y-0 opacity-100 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
-                    <h3 class="text-xl font-semibold mb-2">Ofis Məkanı</h3>
-                    <p class="text-sm opacity-90">Məhsuldarlıq və komfort</p>
-                    <a href="#" class="inline-block bg-slate-100 text-slate-600 px-4 py-1.5 rounded-full text-xs font-semibold flex items-center gap-2 hover:bg-brand hover:text-white transition-colors mt-4 max-w-fit">
-                        Ətraflı <i class="fas fa-arrow-right w-3 h-3"></i>
-                    </a>
-                </div>
-                            </div>
             </div>
-        </div>
-    </section>
 
-    <!-- CTA SECTION -->
-    <section class="py-16 md:py-20 bg-brand text-white">
-        <div class="max-w-7xl mx-auto px-6 md:px-12 text-center">
-            <h2 class="text-3xl md:text-4xl font-light mb-6">Sizin Layihəniz Nə Olmalı?</h2>
-            <p class="text-white/90 mb-8 max-w-2xl mx-auto">Bizimlə əlaqə saxlayın və xəyallarınızı reallığa çevirək</p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="#" class="bg-white text-brand px-8 py-3 rounded-full font-medium hover:bg-slate-100 transition duration-300">
-                    Layihə Başladın
-                </a>
-                <a href="#" class="border border-white/50 text-white px-8 py-3 rounded-full font-medium hover:bg-white hover:text-brand transition duration-300">
-                    Portfolio Detalları
-                </a>
+        <!-- Related Projects -->
+        <div>
+            <h3 class="text-2xl font-light text-slate-900 mb-8">Oxşar Layihələr</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300">
+                    <img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?q=80&w=600&auto=format&fit=crop" 
+                         alt="Related Project 1" 
+                         class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-50 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-6 text-white transform translate-y-0 opacity-100 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+                        <h4 class="text-xl font-semibold mb-2">Lüks Mətbəx</h4>
+                        <p class="text-sm opacity-90">Dəzgah texnologiyası və elegant görünüş</p>
+                        <a href="#" class="inline-block bg-slate-100 text-slate-600 px-4 py-1.5 rounded-full text-xs font-semibold flex items-center gap-2 hover:bg-brand hover:text-white transition-colors mt-4 max-w-fit">
+                            Ətraflı <i class="fas fa-arrow-right w-3 h-3"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300">
+                    <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=600&auto=format&fit=crop" 
+                         alt="Related Project 2" 
+                         class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-50 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-6 text-white transform translate-y-0 opacity-100 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+                        <h4 class="text-xl font-semibold mb-2">Yuxu Otağı</h4>
+                        <p class="text-sm opacity-90">Yataq otağı mebeli</p>
+                        <a href="#" class="inline-block bg-slate-100 text-slate-600 px-4 py-1.5 rounded-full text-xs font-semibold flex items-center gap-2 hover:bg-brand hover:text-white transition-colors mt-4 max-w-fit">
+                            Ətraflı <i class="fas fa-arrow-right w-3 h-3"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300">
+                    <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=600&auto=format&fit=crop" 
+                         alt="Related Project 3" 
+                         class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-50 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-6 text-white transform translate-y-0 opacity-100 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+                        <h4 class="text-xl font-semibold mb-2">Ofis Məkanı</h4>
+                        <p class="text-sm opacity-90">Məhsuldarlıq və komfort</p>
+                        <a href="#" class="inline-block bg-slate-100 text-slate-600 px-4 py-1.5 rounded-full text-xs font-semibold flex items-center gap-2 hover:bg-brand hover:text-white transition-colors mt-4 max-w-fit">
+                            Ətraflı <i class="fas fa-arrow-right w-3 h-3"></i>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -493,9 +537,50 @@
             });
         }
 
+        // --- GALLERY SLIDER ---
+        let currentSlide = 0;
+        const totalSlides = 4;
+
+        function updateSlider() {
+            const slider = document.getElementById('gallery-slider');
+            if (slider) {
+                slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+                
+                // Update thumbnails
+                const thumbnails = document.querySelectorAll('[onclick^="goToSlide"]');
+                thumbnails.forEach((thumb, index) => {
+                    if (index === currentSlide) {
+                        thumb.classList.remove('opacity-60');
+                        thumb.classList.add('opacity-100', 'border-brand');
+                        thumb.classList.remove('border-transparent');
+                    } else {
+                        thumb.classList.add('opacity-60');
+                        thumb.classList.remove('opacity-100', 'border-brand');
+                        thumb.classList.add('border-transparent');
+                    }
+                });
+            }
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateSlider();
+        }
+
+        function previousSlide() {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            updateSlider();
+        }
+
+        function goToSlide(slideIndex) {
+            currentSlide = slideIndex;
+            updateSlider();
+        }
+
         // Initialize on page load
         document.addEventListener('DOMContentLoaded', function() {
             initScrollAnimations();
+            updateSlider(); // Initialize slider
         });
     </script>
 </body>
