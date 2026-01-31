@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bloq - Fabbrica Mebel</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: 'rgb(189, 184, 137)',
+                        brandDark: 'rgb(169, 169, 169)',
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-white text-slate-800 antialiased selection:bg-slate-900 selection:text-white overflow-x-hidden">
+
+    <!-- MOBILE MENU OVERLAY -->
+    <div id="mobile-menu-overlay" class="fixed inset-0 bg-slate-900/98 z-50 transform translate-x-full transition-transform duration-300 flex flex-col justify-center items-center md:hidden backdrop-blur-xl">
+        <!-- Close Button -->
+        <button id="close-menu-btn" class="absolute top-6 right-6 text-white hover:text-brand transition">
+            <i data-lucide="x" class="w-8 h-8"></i>
+        </button>
+        
+        <!-- Mobile Menu Logo -->
+        <div class="absolute top-6 left-6">
+             <img src="http://ebrd.customar.tech/fabbrica1/svg/logo-dark.svg" 
+                 alt="Fabbrica Logo" 
+                 class="w-28 brightness-0 invert"
+                 onerror="this.style.display='none'">
+        </div>
+
+        <nav class="flex flex-col gap-8 text-center text-2xl font-light text-white mt-8">
+            <a href="#" class="hover:text-brand transition" onclick="toggleMenu()">Haqqımızda</a>
+            <a href="#" class="hover:text-brand transition" onclick="toggleMenu()">Xidmətlər</a>
+            <a href="#" class="hover:text-brand transition" onclick="toggleMenu()">Layihələr</a>
+            <a href="blog.html" class="hover:text-brand transition" onclick="toggleMenu()">Bloq</a>
+            <a href="#" class="hover:text-brand transition" onclick="toggleMenu()">Əlaqə</a>
+        </nav>
+        <a href="#" class="mt-12 bg-brand text-white px-8 py-3 rounded-full font-medium flex items-center gap-2 hover:bg-brandDark transition shadow-lg shadow-brand/20">
+            <i data-lucide="shopping-bag" class="w-5 h-5"></i> Mağaza
+        </a>
+    </div>
+
+    <!-- NAVBAR WITH TWO ROWS -->
+    <nav class="bg-white sticky top-0 z-40">
+        <!-- First Row: Logo, Search, Login, Favorites, Cart -->
+        <div class="max-w-7xl mx-auto px-6 md:px-12 py-16 md:py-5">
+            <div class="flex items-center justify-between">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <img src="http://ebrd.customar.tech/fabbrica1/svg/logo-dark.svg" 
+                         alt="Fabbrica Logo" 
+                         class="logo-width transition-all duration-300"
+                         onerror="this.style.display='none'; this.parentElement.innerHTML+='<h1 class=\'text-2xl md:text-3xl font-bold text-slate-900 tracking-widest\'>FABBRICA</h1>'">
+                </div>
+
+                <!-- Search Bar (Center) -->
+                <div class="hidden md:flex flex-1 max-w-xl mx-8">
+                    <div class="relative w-full">
+                        <input type="text" 
+                               placeholder="Bloqda axtar..." 
+                               class="w-full px-4 py-2.5 pr-12 bg-slate-50 border border-slate-200 rounded-full text-sm focus:outline-none focus:border-brand focus:bg-white transition">
+                        <button class="absolute right-2 top-1/2 -translate-y-1/2 bg-brand text-white p-2 rounded-full hover:bg-brandDark transition">
+                            <i data-lucide="search" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Right Actions -->
+                <div class="flex items-center gap-4">
+                    <!-- Mobile Search Toggle -->
+                    <button class="md:hidden text-slate-600 hover:text-brand transition">
+                        <i data-lucide="search" class="w-6 h-6"></i>
+                    </button>
+
+                    <!-- Login -->
+                    <a href="login.html" class="flex items-center gap-2 text-slate-600 hover:text-brand transition px-3 py-2 rounded-lg hover:bg-slate-50">
+                        <i data-lucide="user" class="w-5 h-5"></i>
+                        <span class="hidden sm:inline text-sm font-medium">Giriş</span>
+                    </a>
+
+                    <!-- Favorites -->
+                    <button class="flex items-center gap-2 text-slate-600 hover:text-brand transition px-3 py-2 rounded-lg hover:bg-slate-50 relative">
+                        <i data-lucide="heart" class="w-5 h-5"></i>
+                        <span class="hidden sm:inline text-sm font-medium">Seçilmişlər</span>
+                        <span class="absolute -top-1 -right-1 bg-brand text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">0</span>
+                    </button>
+
+                    <!-- Cart -->
+                    <button class="flex items-center gap-2 text-slate-600 hover:text-brand transition px-3 py-2 rounded-lg hover:bg-slate-50 relative">
+                        <i data-lucide="shopping-cart" class="w-5 h-5"></i>
+                        <span class="hidden sm:inline text-sm font-medium">Səbətim</span>
+                        <span class="absolute -top-1 -right-1 bg-brand text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">0</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Second Row: Product Categories -->
+        <div class="px-6 md:px-12 py-3 bg-slate-900 text-white border-b border-slate-700">
+            <div class="flex items-center justify-between max-w-7xl mx-auto md:px-12">
+                <!-- Categories -->
+                <div class="flex items-center gap-6 overflow-x-auto scrollbar-hide">
+                    <!-- Bütün məhsullar Dropdown (moved outside overflow) -->
+                </div>
+                
+                <!-- Dropdown Container (outside overflow) -->
+                <div class="flex items-center gap-6">
+                    <div class="relative group" id="bütün-mehsullar-dropdown">
+                        <button class="flex items-center gap-2 text-white hover:text-brand transition whitespace-nowrap text-sm font-medium">
+                            <span>Bütün məhsullar</span>
+                            <i data-lucide="chevron-down" class="w-4 h-4"></i>
+                        </button>
+                        
+                        <!-- Simple Dropdown Menu -->
+                        <div id="simple-menu" class="opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 dropdown-menu">
+                            <div class="dropdown-menu-inner">
+                                <a href="#" class="dropdown-item">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/2838/2838694.png" class="dropdown-icon" alt="TV">
+                                    <div>
+                                        <div class="dropdown-title">TV şkafları</div>
+                                        <div class="dropdown-desc">Müasir TV mebelləri</div>
+                                    </div>
+                                </a>
+                                <a href="#" class="dropdown-item">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/2838/2838651.png" class="dropdown-icon" alt="Monitor">
+                                    <div>
+                                        <div class="dropdown-title">Divar dəstləri</div>
+                                        <div class="dropdown-desc">Divar kompozisiyaları</div>
+                                    </div>
+                                </a>
+                                <a href="#" class="dropdown-item">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/2838/2838644.png" class="dropdown-icon" alt="Coffee">
+                                    <div>
+                                        <div class="dropdown-title">Jurnal stolları</div>
+                                        <div class="dropdown-desc">İstirahət stolları</div>
+                                    </div>
+                                </a>
+                                <a href="#" class="dropdown-item">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/2838/2838669.png" class="dropdown-icon" alt="Package">
+                                    <div>
+                                        <div class="dropdown-title">Divar rafları</div>
+                                        <div class="dropdown-desc">Dekorativ raflar</div>
+                                    </div>
+                                </a>
+                                <a href="#" class="dropdown-item">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/2838/2838687.png" class="dropdown-icon" alt="Edit">
+                                    <div>
+                                        <div class="dropdown-title">Yazı stolları</div>
+                                        <div class="dropdown-desc">İş stolları</div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button class="text-white hover:text-brand transition whitespace-nowrap text-sm font-medium">Mətbəx mebeli</button>
+                    <button class="text-white hover:text-brand transition whitespace-nowrap text-sm font-medium">Yataq otağı</button>
+                    <button class="text-white hover:text-brand transition whitespace-nowrap text-sm font-medium">Qonaq otağı</button>
+                    <button class="text-white hover:text-brand transition whitespace-nowrap text-sm font-medium">Ofis mebeli</button>
+                    <button class="text-white hover:text-brand transition whitespace-nowrap text-sm font-medium">Uşaq otağı</button>
+                    <button class="text-white hover:text-brand transition whitespace-nowrap text-sm font-medium">Divanlar</button>
+                    <button class="text-white hover:text-brand transition whitespace-nowrap text-sm font-medium">Stullar</button>
+                    <button class="text-white hover:text-brand transition whitespace-nowrap text-sm font-medium">Dolablar</button>
+                </div>
+
+                <!-- Language & Currency -->
+                <div class="hidden md:flex items-center gap-4">
+                    <!-- Language -->
+                    <div class="relative">
+                        <button class="flex items-center gap-1 text-slate-600 hover:text-brand transition text-sm font-medium">
+                            AZ <i data-lucide="chevron-down" class="w-3 h-3"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Background Overlay -->
+        <div id="dropdown-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden" onclick="closeAllDropdowns()"></div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header class="relative h-[40vh] md:h-[50vh] w-full overflow-hidden">
+        <div class="absolute inset-0">
+            <img src="https://picsum.photos/seed/blog-hero/1920/800" alt="Bloq" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/60"></div>
+        </div>
+        
+        <div class="relative h-full flex items-center justify-center text-center">
+            <div class="max-w-4xl mx-auto px-6">
+                <h1 class="text-4xl md:text-6xl font-bold text-white mb-6 tracking-tight">Fabbrica Bloq</h1>
+                <p class="text-xl md:text-2xl text-white/90 font-light max-w-2xl mx-auto leading-relaxed">
+                    Mebel dizaynı, bəzəmə ideyaları və eviniz üçün ilham verən məsləhətlər
+                </p>
+            </div>
+        </div>
+    </header>
+
+    <!-- BLOG CONTENT -->
+    <section class="py-20 px-6 md:px-12 max-w-7xl mx-auto">
+        <!-- Blog Categories -->
+        <div class="flex flex-wrap gap-3 justify-center mb-12">
+            <button class="px-6 py-2 rounded-full bg-brand text-white font-medium transition hover:bg-brandDark">Bütün</button>
+            <button class="px-6 py-2 rounded-full bg-slate-100 text-slate-700 font-medium transition hover:bg-slate-200">Dizayn</button>
+            <button class="px-6 py-2 rounded-full bg-slate-100 text-slate-700 font-medium transition hover:bg-slate-200">Bəzəmə</button>
+            <button class="px-6 py-2 rounded-full bg-slate-100 text-slate-700 font-medium transition hover:bg-slate-200">Məsləhətlər</button>
+            <button class="px-6 py-2 rounded-full bg-slate-100 text-slate-700 font-medium transition hover:bg-slate-200">Trendlər</button>
+        </div>
+
+        <!-- Blog Posts Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Blog Post 1 -->
+            <article class="group cursor-pointer">
+                <div class="relative aspect-[4/3] overflow-hidden rounded-lg mb-4">
+                    <img src="https://picsum.photos/seed/blog1/600/450" alt="Blog post" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <div class="absolute top-4 left-4">
+                        <span class="bg-brand text-white px-3 py-1 rounded-full text-xs font-medium">Dizayn</span>
+                    </div>
+                </div>
+                <div class="space-y-3">
+                    <div class="flex items-center gap-4 text-sm text-slate-600">
+                        <span>12 Yanvar 2024</span>
+                        <span>•</span>
+                        <span>5 dəqiqə oxuma</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-slate-900 group-hover:text-brand transition">2024-cü ilin Mebel Trendləri</h3>
+                    <p class="text-slate-600 leading-relaxed">Yeni ilin ən populyar mebel trendləri və evinizdə tətbiq edə biləcəyiniz dizayn ideyaları...</p>
+                    <a href="blog-detail.html" class="inline-flex items-center gap-2 text-brand font-medium hover:gap-3 transition-all">
+                        Daha ətraflı oxu <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </a>
+                </div>
+            </article>
+
+            <!-- Blog Post 2 -->
+            <article class="group cursor-pointer">
+                <div class="relative aspect-[4/3] overflow-hidden rounded-lg mb-4">
+                    <img src="https://picsum.photos/seed/blog2/600/450" alt="Blog post" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <div class="absolute top-4 left-4">
+                        <span class="bg-brand text-white px-3 py-1 rounded-full text-xs font-medium">Bəzəmə</span>
+                    </div>
+                </div>
+                <div class="space-y-3">
+                    <div class="flex items-center gap-4 text-sm text-slate-600">
+                        <span>10 Yanvar 2024</span>
+                        <span>•</span>
+                        <span>7 dəqiqə oxuma</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-slate-900 group-hover:text-brand transition">Kiçik Məkanlar üçün Böyük İdeyalar</h3>
+                    <p class="text-slate-600 leading-relaxed">Məhdud məkanları daha funksional və rahat etmək üçün praktik bəzəmə məsləhətləri...</p>
+                    <a href="blog-detail.html" class="inline-flex items-center gap-2 text-brand font-medium hover:gap-3 transition-all">
+                        Daha ətraflı oxu <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </a>
+                </div>
+            </article>
+
+            <!-- Blog Post 3 -->
+            <article class="group cursor-pointer">
+                <div class="relative aspect-[4/3] overflow-hidden rounded-lg mb-4">
+                    <img src="https://picsum.photos/seed/blog3/600/450" alt="Blog post" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <div class="absolute top-4 left-4">
+                        <span class="bg-brand text-white px-3 py-1 rounded-full text-xs font-medium">Məsləhətlər</span>
+                    </div>
+                </div>
+                <div class="space-y-3">
+                    <div class="flex items-center gap-4 text-sm text-slate-600">
+                        <span>8 Yanvar 2024</span>
+                        <span>•</span>
+                        <span>4 dəqiqə oxuma</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-slate-900 group-hover:text-brand transition">Mebelin Düzgün Baxımı</h3>
+                    <p class="text-slate-600 leading-relaxed">Meblellərinizin daha uzunömürlü olması üçün baxım və qayğı qaydaları...</p>
+                    <a href="blog-detail.html" class="inline-flex items-center gap-2 text-brand font-medium hover:gap-3 transition-all">
+                        Daha ətraflı oxu <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </a>
+                </div>
+            </article>
+
+            <!-- Blog Post 4 -->
+            <article class="group cursor-pointer">
+                <div class="relative aspect-[4/3] overflow-hidden rounded-lg mb-4">
+                    <img src="https://picsum.photos/seed/blog4/600/450" alt="Blog post" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <div class="absolute top-4 left-4">
+                        <span class="bg-brand text-white px-3 py-1 rounded-full text-xs font-medium">Dizayn</span>
+                    </div>
+                </div>
+                <div class="space-y-3">
+                    <div class="flex items-center gap-4 text-sm text-slate-600">
+                        <span>5 Yanvar 2024</span>
+                        <span>•</span>
+                        <span>6 dəqiqə oxuma</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-slate-900 group-hover:text-brand transition">Rəng Psixologiyası İnteryerdə</h3>
+                    <p class="text-slate-600 leading-relaxed">Ev interyerində rənglərin doğru seçilməsi və psixoloji təsiri haqqında bilməli olduğunuzlar...</p>
+                    <a href="blog-detail.html" class="inline-flex items-center gap-2 text-brand font-medium hover:gap-3 transition-all">
+                        Daha ətraflı oxu <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </a>
+                </div>
+            </article>
+
+            <!-- Blog Post 5 -->
+            <article class="group cursor-pointer">
+                <div class="relative aspect-[4/3] overflow-hidden rounded-lg mb-4">
+                    <img src="https://picsum.photos/seed/blog5/600/450" alt="Blog post" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <div class="absolute top-4 left-4">
+                        <span class="bg-brand text-white px-3 py-1 rounded-full text-xs font-medium">Trendlər</span>
+                    </div>
+                </div>
+                <div class="space-y-3">
+                    <div class="flex items-center gap-4 text-sm text-slate-600">
+                        <span>3 Yanvar 2024</span>
+                        <span>•</span>
+                        <span>5 dəqiqə oxuma</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-slate-900 group-hover:text-brand transition">Minimalist Dizaynın Mənaları</h3>
+                    <p class="text-slate-600 leading-relaxed">Az olan daha çoxdur prinsipi ilə minimalist interyer dizaynının sirləri...</p>
+                    <a href="blog-detail.html" class="inline-flex items-center gap-2 text-brand font-medium hover:gap-3 transition-all">
+                        Daha ətraflı oxu <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </a>
+                </div>
+            </article>
+
+            <!-- Blog Post 6 -->
+            <article class="group cursor-pointer">
+                <div class="relative aspect-[4/3] overflow-hidden rounded-lg mb-4">
+                    <img src="https://picsum.photos/seed/blog6/600/450" alt="Blog post" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <div class="absolute top-4 left-4">
+                        <span class="bg-brand text-white px-3 py-1 rounded-full text-xs font-medium">Bəzəmə</span>
+                    </div>
+                </div>
+                <div class="space-y-3">
+                    <div class="flex items-center gap-4 text-sm text-slate-600">
+                        <span>1 Yanvar 2024</span>
+                        <span>•</span>
+                        <span>8 dəqiqə oxuma</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-slate-900 group-hover:text-brand transition">Yataq Otağı Dizayn İdeyaları</h3>
+                    <p class="text-slate-600 leading-relaxed">Rahat yuxu üçün ideal yataq otağı dizaynı və bəzəmə təklifləri...</p>
+                    <a href="blog-detail.html" class="inline-flex items-center gap-2 text-brand font-medium hover:gap-3 transition-all">
+                        Daha ətraflı oxu <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </a>
+                </div>
+            </article>
+        </div>
+
+        <!-- Load More Button -->
+        <div class="text-center mt-12">
+            <button class="bg-brand text-white px-8 py-3 rounded-full font-medium hover:bg-brandDark transition shadow-lg shadow-brand/20">
+                Daha çox yüklə
+            </button>
+        </div>
+    </section>
+
+    <!-- NEWSLETTER SECTION -->
+    <section class="bg-slate-50 py-16">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <h2 class="text-3xl font-bold text-slate-900 mb-4">Bloq yazılarımızdan xəbərdar olun</h2>
+            <p class="text-slate-600 mb-8">Ən yeni məqalələr, dizayn trendləri və xüsusi təkliflər üçün abunə olun</p>
+            <div class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+                <input type="email" placeholder="E-mail ünvanınız" class="flex-1 px-4 py-3 rounded-full border border-slate-200 focus:outline-none focus:border-brand">
+                <button class="bg-brand text-white px-8 py-3 rounded-full font-medium hover:bg-brandDark transition shadow-lg shadow-brand/20">
+                    Abunə ol
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 text-sm border-t border-slate-800 reveal">
+        <div class="max-w-7xl mx-auto px-6 md:px-12 py-20">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-16 mb-16">
+                <!-- Brand Column -->
+                <div class="flex flex-col gap-6">
+                    <!-- Logo Image -->
+                    <img src="http://ebrd.customar.tech/fabbrica1/svg/logo-dark.svg" 
+                         alt="Fabbrica Logo" 
+                         class="w-40 brightness-0 invert"
+                         onerror="this.style.display='none'; this.parentElement.innerHTML+='<h2 class=\'text-2xl font-bold text-white tracking-widest\'>FABBRICA</h2>'">
+                    
+                    <p class="text-slate-300 leading-relaxed max-w-sm text-base">
+                        Estetika və funksionallığın harmoniyası. Eviniz və ofisiniz üçün premium mebel həlləri.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="#" class="w-12 h-12 rounded-full bg-slate-800 flex items-center justify-center hover:bg-brand hover:text-white transition-all duration-300">
+                            <i data-lucide="instagram" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="w-12 h-12 rounded-full bg-slate-800 flex items-center justify-center hover:bg-brand hover:text-white transition-all duration-300">
+                            <i data-lucide="facebook" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="w-12 h-12 rounded-full bg-slate-800 flex items-center justify-center hover:bg-brand hover:text-white transition-all duration-300">
+                            <i data-lucide="linkedin" class="w-5 h-5"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="text-white font-semibold mb-6 tracking-wide uppercase text-xs">Menu</h3>
+                    <ul class="flex flex-col gap-4">
+                        <li><a href="#" class="hover:text-brand transition-colors">Haqqımızda</a></li>
+                        <li><a href="#" class="hover:text-brand transition-colors">Xidmətlər</a></li>
+                        <li><a href="#" class="hover:text-brand transition-colors">Materiallar</a></li>
+                        <li><a href="#" class="hover:text-brand transition-colors">Layihələr</a></li>
+                        <li><a href="blog.html" class="hover:text-brand transition-colors">Bloq</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div>
+                    <h3 class="text-white font-semibold mb-6 tracking-wide uppercase text-xs">Əlaqə</h3>
+                    <ul class="flex flex-col gap-4">
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="map-pin" class="w-5 h-5 text-brand shrink-0"></i>
+                            <span>Bakı şəhəri, Nərimanov rayonu,<br>Əhməd Rəcəbli küçəsi 15</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i data-lucide="phone" class="w-5 h-5 text-brand shrink-0"></i>
+                            <a href="tel:+994501234567" class="hover:text-white transition">+994 50 123 45 67</a>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i data-lucide="mail" class="w-5 h-5 text-brand shrink-0"></i>
+                            <a href="mailto:info@fabbrica.az" class="hover:text-white transition">info@fabbrica.az</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Bottom Bar -->
+            <div class="pt-8 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4 text-xs">
+                <p>&copy; 2024 Fabbrica Mebel Fabriki. Bütün hüquqlar qorunur.</p>
+                <div class="flex gap-6">
+                    <a href="#" class="hover:text-brand transition">Məxfilik Siyasəti</a>
+                    <a href="#" class="hover:text-brand transition">İstifadə Şərtləri</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fabbrica Mebel - Azərbaycanın n Yaxşı Mebel Mağazası</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: 'rgb(189, 184, 137)',
+                        brandDark: 'rgb(169, 169, 169)',
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Professional Quantity Selector */
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            background: #ffffff;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: all 0.2s ease;
+        }
+        
+        .quantity-selector:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            border-color: #cbd5e1;
+        }
+        
+        .quantity-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border: none;
+            background: transparent;
+            color: #64748b;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+        
+        .quantity-btn:hover {
+            background: #f8fafc;
+            color: #475569;
+        }
+        
+        .quantity-btn:active {
+            transform: scale(0.95);
+        }
+        
+        .quantity-btn--minus {
+            border-right: 1px solid #e2e8f0;
+        }
+        
+        .quantity-btn--plus {
+            border-left: 1px solid #e2e8f0;
+        }
+        
+        .quantity-input {
+            width: 60px;
+            height: 40px;
+            border: none;
+            text-align: center;
+            font-size: 16px;
+            font-weight: 500;
+            color: #1e293b;
+            background: transparent;
+            outline: none;
+            -moz-appearance: textfield;
+            appearance: textfield;
+        }
+        
+        .quantity-input::-webkit-outer-spin-button,
+        .quantity-input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        
+        /* Accessibility */
+        .quantity-btn:focus-visible {
+            outline: 2px solid rgb(189, 184, 137);
+            outline-offset: 2px;
+        }
+        
+        .quantity-input:focus {
+            background: #f8fafc;
+        }
+    </style>
+</head>
+<body class="bg-white text-slate-800 antialiased selection:bg-slate-900 selection:text-white overflow-x-hidden">
+
+    <!-- MOBILE MENU OVERLAY -->
+    <div id="mobile-menu-overlay" class="fixed inset-0 bg-slate-900/98 z-50 transform translate-x-full transition-transform duration-300 flex flex-col justify-center items-center md:hidden backdrop-blur-xl">
+        <!-- Close Button -->
+        <button id="close-menu-btn" class="absolute top-6 right-6 text-white hover:text-brand transition">
+            <i data-lucide="x" class="w-8 h-8"></i>
+        </button>
+        
+        <!-- Mobile Menu Logo -->
+        <div class="absolute top-6 left-6">
+             <img src="http://ebrd.customar.tech/fabbrica1/svg/logo-dark.svg" 
+                 alt="Fabbrica Logo" 
+                 class="w-28 brightness-0 invert"
+                 onerror="this.style.display='none'">
+        </div>
+
+        <nav class="flex flex-col gap-8 text-center text-2xl font-light text-white mt-8">
+            <a href="#" class="hover:text-brand transition" onclick="toggleMenu()">Haqqımızda</a>
+            <a href="#" class="hover:text-brand transition" onclick="toggleMenu()">Xidmətlər</a>
+            <a href="#" class="hover:text-brand transition" onclick="toggleMenu()">Layihələr</a>
+            <a href="#" class="hover:text-brand transition" onclick="toggleMenu()">Bloq</a>
+            <a href="#" class="hover:text-brand transition" onclick="toggleMenu()">Əlaqə</a>
+        </nav>
+        <a href="#" class="mt-12 bg-brand text-white px-8 py-3 rounded-full font-medium flex items-center gap-2 hover:bg-brandDark transition shadow-lg shadow-brand/20">
+            <i data-lucide="shopping-bag" class="w-5 h-5"></i> Mağaza
+        </a>
+    </div>
+
+    <!-- NAVBAR WITH TWO ROWS -->
+    <nav class="bg-white sticky top-0 z-40">
+        <!-- First Row: Logo, Search, Login, Favorites, Cart -->
+        <div class="max-w-7xl mx-auto px-6 md:px-12 py-16 md:py-5">
+            <div class="flex items-center justify-between">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <img src="http://ebrd.customar.tech/fabbrica1/svg/logo-dark.svg" 
+                         alt="Fabbrica Logo" 
+                         class="logo-width transition-all duration-300"
+                         onerror="this.style.display='none'; this.parentElement.innerHTML+='<h1 class=\'text-2xl md:text-3xl font-bold text-slate-900 tracking-widest\'>FABBRICA</h1>'">
+                </div>
+
+                <!-- Search Bar (Center) -->
+                <div class="hidden md:flex flex-1 max-w-xl mx-8">
+                    <div class="relative w-full">
+                        <input type="text" 
+                               placeholder="Məhsullarda axtar..." 
+                               class="w-full px-4 py-2.5 pr-12 bg-slate-50 border border-slate-200 rounded-full text-sm focus:outline-none focus:border-brand focus:bg-white transition">
+                        <button class="absolute right-2 top-1/2 -translate-y-1/2 bg-brand text-white p-2 rounded-full hover:bg-brandDark transition">
+                            <i data-lucide="search" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Right Actions -->
+                <div class="flex items-center gap-4">
+                    <!-- Mobile Search Toggle -->
+                    <button class="md:hidden text-slate-600 hover:text-brand transition">
+                        <i data-lucide="search" class="w-6 h-6"></i>
+                    </button>
+
+                    <!-- Login -->
+                    <a href="login.html" class="flex items-center gap-2 text-slate-600 hover:text-brand transition px-3 py-2 rounded-lg hover:bg-slate-50">
+                        <i data-lucide="user" class="w-5 h-5"></i>
+                        <span class="hidden sm:inline text-sm font-medium">Giriş</span>
+                    </a>
+
+                    <!-- Favorites -->
+                    <button class="flex items-center gap-2 text-slate-600 hover:text-brand transition px-3 py-2 rounded-lg hover:bg-slate-50 relative">
+                        <i data-lucide="heart" class="w-5 h-5"></i>
+                        <span class="hidden sm:inline text-sm font-medium">Seçilmişlər</span>
+                        <span id="favorites-count" class="absolute -top-1 -right-1 bg-brand text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">0</span>
+                    </button>
+
+                    <!-- Cart -->
+                    <button class="flex items-center gap-2 text-slate-600 hover:text-brand transition px-3 py-2 rounded-lg hover:bg-slate-50 relative">
+                        <i data-lucide="shopping-cart" class="w-5 h-5"></i>
+                        <span class="hidden sm:inline text-sm font-medium">Səbətim</span>
+                        <span id="cart-count" class="absolute -top-1 -right-1 bg-brand text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">0</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Second Row: Product Categories -->
+        <div class="px-6 md:px-12 py-3 bg-slate-900 text-white border-b border-slate-700">
+            <div class="flex items-center justify-between max-w-7xl mx-auto md:px-12">
+                <!-- Categories -->
+                <div class="flex items-center gap-6 overflow-x-auto scrollbar-hide">
+                    <!-- Bütün məhsullar Dropdown (moved outside overflow) -->
+                </div>
+                
+                <!-- Dropdown Container (outside overflow) -->
+                <div class="flex items-center gap-6">
+                    <div class="relative group" id="bütün-mehsullar-dropdown">
+                        <button class="flex items-center gap-2 text-white hover:text-brand transition whitespace-nowrap text-sm font-medium">
+                            <span>Bütün məhsullar</span>
+                            <i data-lucide="chevron-down" class="w-4 h-4"></i>
+                        </button>
+                        
+                        <!-- Simple Dropdown Menu -->
+                        <div id="simple-menu" class="opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 dropdown-menu">
+                            <div class="dropdown-menu-inner">
+                                <a href="#" class="dropdown-item">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/2838/2838694.png" class="dropdown-icon" alt="TV">
+                                    <div>
+                                        <div class="dropdown-title">TV şkafları</div>
+                                        <div class="dropdown-desc">Müasir TV mebelləri</div>
+                                    </div>
+                                </a>
+                                <a href="#" class="dropdown-item">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/2838/2838651.png" class="dropdown-icon" alt="Monitor">
+                                    <div>
+                                        <div class="dropdown-title">Divar dəstləri</div>
+                                        <div class="dropdown-desc">Divar kompozisiyaları</div>
+                                    </div>
+                                </a>
+                                <a href="#" class="dropdown-item">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/2838/2838644.png" class="dropdown-icon" alt="Coffee">
+                                    <div>
+                                        <div class="dropdown-title">Jurnal stolları</div>
+                                        <div class="dropdown-desc">İstirahət stolları</div>
+                                    </div>
+                                </a>
+                                <a href="#" class="dropdown-item">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/2838/2838669.png" class="dropdown-icon" alt="Package">
+                                    <div>
+                                        <div class="dropdown-title">Divar rafları</div>
+                                        <div class="dropdown-desc">Dekorativ raflar</div>
+                                    </div>
+                                </a>
+                                <a href="#" class="dropdown-item">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/2838/2838687.png" class="dropdown-icon" alt="Edit">
+                                    <div>
+                                        <div class="dropdown-title">Yazı stolları</div>
+                                        <div class="dropdown-desc">İş stolları</div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button class="text-white hover:text-brand transition whitespace-nowrap text-sm font-medium">Mətbəx mebeli</button>
+                    <button class="text-white hover:text-brand transition whitespace-nowrap text-sm font-medium">Yataq otağı</button>
+                    <button class="text-white hover:text-brand transition whitespace-nowrap text-sm font-medium">Qonaq otağı</button>
+                    <button class="text-white hover:text-brand transition whitespace-nowrap text-sm font-medium">Ofis mebeli</button>
+                    <button class="text-white hover:text-brand transition whitespace-nowrap text-sm font-medium">Uşaq otağı</button>
+                    <button class="text-white hover:text-brand transition whitespace-nowrap text-sm font-medium">Divanlar</button>
+                    <button class="text-white hover:text-brand transition whitespace-nowrap text-sm font-medium">Stullar</button>
+                    <button class="text-white hover:text-brand transition whitespace-nowrap text-sm font-medium">Dolablar</button>
+                </div>
+
+                <!-- Language & Currency -->
+                <div class="hidden md:flex items-center gap-4">
+                    <!-- Language -->
+                    <div class="relative">
+                        <button class="flex items-center gap-1 text-slate-600 hover:text-brand transition text-sm font-medium">
+                            AZ <i data-lucide="chevron-down" class="w-3 h-3"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Background Overlay -->
+        <div id="dropdown-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden" onclick="closeAllDropdowns()"></div>
+    </nav>
+
+    <!-- Product Detail Section -->
+    <section class="pt-32 pb-16 px-6 md:px-12 max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <!-- Product Images -->
+            <div class="space-y-4">
+                <!-- Main Image -->
+                <div class="relative aspect-square bg-slate-100 rounded-lg overflow-hidden">
+                    <img id="main-image" 
+                         src="https://picsum.photos/seed/product1/800/800" 
+                         alt="Məhsul şəkli" 
+                         class="w-full h-full object-cover cursor-pointer hover:scale-105 transition duration-300">
+                    <button class="absolute top-4 right-4 bg-white p-2 rounded-full shadow-md hover:shadow-lg transition">
+                        <i data-lucide="heart" class="w-5 h-5 text-slate-600"></i>
+                    </button>
+                </div>
+                
+                <!-- Thumbnail Images -->
+                <div class="grid grid-cols-4 gap-4">
+                    <div class="aspect-square bg-slate-100 rounded-lg overflow-hidden cursor-pointer ring-2 ring-brand ring-offset-2">
+                        <img src="https://picsum.photos/seed/product1/200/200" 
+                             alt="Məhsul şəkli 1" 
+                             class="thumbnail-img w-full h-full object-cover hover:scale-105 transition duration-300">
+                    </div>
+                    <div class="aspect-square bg-slate-100 rounded-lg overflow-hidden cursor-pointer hover:ring-2 hover:ring-brand hover:ring-offset-2 transition">
+                        <img src="https://picsum.photos/seed/product2/200/200" 
+                             alt="Məhsul şəkli 2" 
+                             class="thumbnail-img w-full h-full object-cover hover:scale-105 transition duration-300">
+                    </div>
+                    <div class="aspect-square bg-slate-100 rounded-lg overflow-hidden cursor-pointer hover:ring-2 hover:ring-brand hover:ring-offset-2 transition">
+                        <img src="https://picsum.photos/seed/product3/200/200" 
+                             alt="Məhsul şəkli 3" 
+                             class="thumbnail-img w-full h-full object-cover hover:scale-105 transition duration-300">
+                    </div>
+                    <div class="aspect-square bg-slate-100 rounded-lg overflow-hidden cursor-pointer hover:ring-2 hover:ring-brand hover:ring-offset-2 transition">
+                        <img src="https://picsum.photos/seed/product4/200/200" 
+                             alt="Məhsul şəkli 4" 
+                             class="thumbnail-img w-full h-full object-cover hover:scale-105 transition duration-300">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Information -->
+            <div class="space-y-6">
+                <!-- Product Title and Category -->
+                <div>
+                    <div class="flex items-center gap-3 mb-2">
+                        <span class="text-sm text-brand font-medium">TV Şkafları</span>
+                        <span class="text-slate-300">|</span>
+                        <span class="text-sm text-slate-500">Məhsul Kodu: TV-001</span>
+                    </div>
+                    <h1 class="text-3xl font-bold text-slate-900 mb-4">Modern TV Şkafı</h1>
+                    
+                    <!-- Rating -->
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="flex items-center gap-1">
+                            <i data-lucide="star" class="w-4 h-4 fill-yellow-400 text-yellow-400"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-yellow-400 text-yellow-400"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-yellow-400 text-yellow-400"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-yellow-400 text-yellow-400"></i>
+                            <i data-lucide="star" class="w-4 h-4 text-slate-300"></i>
+                        </div>
+                        <span class="text-sm text-slate-600">4.0 (3 rəy)</span>
+                    </div>
+                </div>
+
+                <!-- Price -->
+                <div class="flex items-center gap-4">
+                    <span class="text-3xl font-bold text-slate-900">₼2,499</span>
+                    <span class="text-xl text-slate-400 line-through">₼3,299</span>
+                    <span class="bg-red-100 text-red-600 px-3 py-1 rounded-full text-sm font-medium">24% endirim</span>
+                </div>
+
+                <!-- Description -->
+                <div>
+                    <h3 class="text-lg font-semibold text-slate-900 mb-3">Məhsul Haqqında</h3>
+                    <p class="text-slate-600 leading-relaxed">
+                        Modern TV şkafı eviniz üçün mükəmməl seçimdir. Yüksək keyfiyyətli materiallardan hazırlanmış bu şkaf, 
+                        geniş saxlama sahəsi və elegant dizaynı ilə diqqət cəlb edir. Müxtəlif ölçülü TV-lər üçün uyğun olan 
+                        bu məhsul, evinizə şıklıq və funksionallıq bəxş edir.
+                    </p>
+                </div>
+
+                <!-- Features -->
+                <div>
+                    <h3 class="text-lg font-semibold text-slate-900 mb-3">Xüsusiyyətlər</h3>
+                    <ul class="space-y-2 text-slate-600">
+                        <li class="flex items-center gap-2">
+                            <i data-lucide="check" class="w-4 h-4 text-brand"></i>
+                            <span>Material: Yüksək keyfiyyətli MDF</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i data-lucide="check" class="w-4 h-4 text-brand"></i>
+                            <span>Ölçülər: 180 x 40 x 50 sm</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i data-lucide="check" class="w-4 h-4 text-brand"></i>
+                            <span>Rəng: Wenge / Walnut</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i data-lucide="check" class="w-4 h-4 text-brand"></i>
+                            <span>Çəki: 45 kq</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Quantity and Add to Cart -->
+                <div class="flex items-center gap-4">
+                    <!-- Quantity Selector -->
+                    <div class="flex items-center">
+                        <label class="text-sm font-semibold text-slate-800 tracking-wide mr-4">Miqdar:</label>
+                        <div class="quantity-selector">
+    <button class="quantity-btn quantity-btn--minus" aria-label="Decrease quantity">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M3 8h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+    </button>
+    <input type="number" class="quantity-input" value="1" min="1" max="99">
+    <button class="quantity-btn quantity-btn--plus" aria-label="Increase quantity">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+    </button>
+</div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="flex items-center gap-3 flex-1">
+                        <button id="add-to-cart" class="flex-1 bg-brand text-white px-8 py-3 rounded-full font-medium hover:bg-brandDark transition shadow-lg shadow-brand/20 flex items-center justify-center gap-2">
+                            <i data-lucide="shopping-cart" class="w-5 h-5"></i>
+                            <span>Səbətə Əlavə Et</span>
+                        </button>
+                        <button id="add-to-favorites" class="p-2 rounded-full hover:bg-slate-100 transition">
+                            <i data-lucide="heart" class="w-5 h-5 text-slate-600"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Additional Info -->
+                <div class="border-t border-slate-200 pt-6 space-y-4">
+                    <div class="flex items-center gap-3 text-slate-600">
+                        <i data-lucide="truck" class="w-5 h-5 text-brand"></i>
+                        <span class="text-sm">Pulsuz çatdırılma</span>
+                    </div>
+                    <div class="flex items-center gap-3 text-slate-600">
+                        <i data-lucide="shield-check" class="w-5 h-5 text-brand"></i>
+                        <span class="text-sm">2 il zəmanət</span>
+                    </div>
+                    <div class="flex items-center gap-3 text-slate-600">
+                        <i data-lucide="rotate-ccw" class="w-5 h-5 text-brand"></i>
+                        <span class="text-sm">14 gün geri qaytarma</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Related Products -->
+    <section class="py-16 px-6 md:px-12 max-w-7xl mx-auto">
+        <h2 class="text-2xl font-bold text-slate-900 mb-8">Oxşar Məhsullar</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Related Product 1 -->
+            <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition duration-300">
+                <div class="aspect-square bg-slate-100 relative overflow-hidden group">
+                    <img src="https://picsum.photos/seed/related1/400/400" alt="Oxşar məhsul" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                    <span class="absolute top-3 left-3 bg-red-100 text-red-600 px-2 py-1 rounded text-xs font-medium">Yeni</span>
+                </div>
+                <div class="p-4">
+                    <h3 class="font-semibold text-slate-900 mb-2">Classic TV Şkafı</h3>
+                    <p class="text-2xl font-bold text-brand mb-3">₼1,899</p>
+                    <button class="w-full bg-slate-900 text-white py-2 rounded-full text-sm hover:bg-brand transition duration-300">
+                        Səbətə at
+                    </button>
+                </div>
+            </div>
+
+            <!-- Related Product 2 -->
+            <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition duration-300">
+                <div class="aspect-square bg-slate-100 relative overflow-hidden group">
+                    <img src="https://picsum.photos/seed/related2/400/400" alt="Oxşar məhsul" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                    <span class="absolute top-3 left-3 bg-brand text-white px-2 py-1 rounded text-xs font-medium">Endirim</span>
+                </div>
+                <div class="p-4">
+                    <h3 class="font-semibold text-slate-900 mb-2">Minimal TV Şkafı</h3>
+                    <p class="text-2xl font-bold text-brand mb-3">₼1,299</p>
+                    <button class="w-full bg-slate-900 text-white py-2 rounded-full text-sm hover:bg-brand transition duration-300">
+                        Səbətə at
+                    </button>
+                </div>
+            </div>
+
+            <!-- Related Product 3 -->
+            <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition duration-300">
+                <div class="aspect-square bg-slate-100 relative overflow-hidden group">
+                    <img src="https://picsum.photos/seed/related3/400/400" alt="Oxşar məhsul" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                </div>
+                <div class="p-4">
+                    <h3 class="font-semibold text-slate-900 mb-2">Luxury TV Şkafı</h3>
+                    <p class="text-2xl font-bold text-brand mb-3">₼4,299</p>
+                    <button class="w-full bg-slate-900 text-white py-2 rounded-full text-sm hover:bg-brand transition duration-300">
+                        Səbətə at
+                    </button>
+                </div>
+            </div>
+
+            <!-- Related Product 4 -->
+            <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition duration-300">
+                <div class="aspect-square bg-slate-100 relative overflow-hidden group">
+                    <img src="https://picsum.photos/seed/related4/400/400" alt="Oxşar məhsul" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                    <span class="absolute top-3 left-3 bg-green-100 text-green-600 px-2 py-1 rounded text-xs font-medium">Populyar</span>
+                </div>
+                <div class="p-4">
+                    <h3 class="font-semibold text-slate-900 mb-2">Smart TV Şkafı</h3>
+                    <p class="text-2xl font-bold text-brand mb-3">₼3,199</p>
+                    <button class="w-full bg-slate-900 text-white py-2 rounded-full text-sm hover:bg-brand transition duration-300">
+                        Səbətə at
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Shopping Cart Sidebar -->
+    <div id="cart-sidebar" class="fixed right-0 top-0 h-full w-96 bg-white shadow-2xl transform translate-x-full transition-transform duration-300 z-50">
+        <div class="flex flex-col h-full">
+            <div class="flex items-center justify-between p-6 border-b">
+                <h2 class="text-xl font-semibold text-slate-900">Səbət</h2>
+                <button id="close-cart" class="p-2 rounded-full hover:bg-slate-100 transition">
+                    <i data-lucide="x" class="w-5 h-5 text-slate-600"></i>
+                </button>
+            </div>
+            
+            <div id="cart-items" class="flex-1 overflow-y-auto p-6">
+                <div class="text-center text-slate-500 py-8">
+                    <i data-lucide="shopping-cart" class="w-12 h-12 mx-auto mb-4 text-slate-300"></i>
+                    <p>Səbətiniz boşdur</p>
+                </div>
+            </div>
+            
+            <div class="border-t p-6">
+                <div class="flex items-center justify-between mb-4">
+                    <span class="text-lg font-semibold text-slate-900">Cəmi:</span>
+                    <span id="cart-total" class="text-2xl font-bold text-brand">₼0</span>
+                </div>
+                <button class="w-full bg-slate-900 text-white py-3 rounded-full font-medium hover:bg-brand transition duration-300">
+                    Sifarişi Tamamla
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification -->
+    <div id="notification" class="fixed top-24 right-6 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg transform translate-x-[150%] transition-all duration-300 z-50 opacity-0 pointer-events-none">
+        <div class="flex items-center gap-3">
+            <i data-lucide="check-circle" class="w-5 h-5"></i>
+            <span id="notification-text">Məhsul səbətə əlavə edildi!</span>
+        </div>
+    </div>
+
+    <!-- Image Modal -->
+    <div id="image-modal" class="fixed inset-0 bg-black/90 z-[60] opacity-0 pointer-events-none transition-all duration-300">
+        <div class="flex items-center justify-center h-full p-4">
+            <!-- Close Button -->
+            <button id="modal-close" class="absolute top-4 right-4 text-white/80 hover:text-white transition p-2 rounded-full hover:bg-white/10">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+            
+            <!-- Previous Button -->
+            <button id="modal-prev" class="absolute left-4 top-1/2 -translate-y-1/2 text-white/80 hover:text-white transition p-3 rounded-full hover:bg-white/10">
+                <i data-lucide="chevron-left" class="w-6 h-6"></i>
+            </button>
+            
+            <!-- Next Button -->
+            <button id="modal-next" class="absolute right-4 top-1/2 -translate-y-1/2 text-white/80 hover:text-white transition p-3 rounded-full hover:bg-white/10">
+                <i data-lucide="chevron-right" class="w-6 h-6"></i>
+            </button>
+            
+            <!-- Modal Image -->
+            <div class="max-w-4xl max-h-full">
+                <img id="modal-image" src="" alt="Məhsul şəkli" class="max-w-full max-h-full object-contain">
+            </div>
+            
+            <!-- Image Counter -->
+            <div class="absolute bottom-4 left-1/2 -translate-x-1/2 text-white/80 text-sm bg-black/50 px-3 py-1 rounded-full">
+                <span id="image-counter">1 / 5</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 text-sm border-t border-slate-800 reveal">
+        <div class="max-w-7xl mx-auto px-6 md:px-12 py-20">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-16 mb-16">
+                <!-- Brand Column -->
+                <div class="flex flex-col gap-6">
+                    <!-- Logo Image -->
+                    <img src="http://ebrd.customar.tech/fabbrica1/svg/logo-dark.svg" 
+                         alt="Fabbrica Logo" 
+                         class="w-40 brightness-0 invert"
+                         onerror="this.style.display='none'; this.parentElement.innerHTML+='<h2 class=\'text-2xl font-bold text-white tracking-widest\'>FABBRICA</h2>'">
+                    
+                    <p class="text-slate-300 leading-relaxed max-w-sm text-base">
+                        Estetika və funksionallığın harmoniyası. Eviniz və ofisiniz üçün premium mebel həlləri.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="#" class="w-12 h-12 rounded-full bg-slate-800 flex items-center justify-center hover:bg-brand hover:text-white transition-all duration-300">
+                            <i data-lucide="instagram" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="w-12 h-12 rounded-full bg-slate-800 flex items-center justify-center hover:bg-brand hover:text-white transition-all duration-300">
+                            <i data-lucide="facebook" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="w-12 h-12 rounded-full bg-slate-800 flex items-center justify-center hover:bg-brand hover:text-white transition-all duration-300">
+                            <i data-lucide="linkedin" class="w-5 h-5"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="text-white font-semibold mb-6 tracking-wide uppercase text-xs">Menu</h3>
+                    <ul class="flex flex-col gap-4">
+                        <li><a href="#" class="hover:text-brand transition-colors">Haqqımızda</a></li>
+                        <li><a href="#" class="hover:text-brand transition-colors">Xidmətlər</a></li>
+                        <li><a href="#" class="hover:text-brand transition-colors">Materiallar</a></li>
+                        <li><a href="#" class="hover:text-brand transition-colors">Layihələr</a></li>
+                        <li><a href="#" class="hover:text-brand transition-colors">Bloq</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div>
+                    <h3 class="text-white font-semibold mb-6 tracking-wide uppercase text-xs">Əlaqə</h3>
+                    <ul class="flex flex-col gap-4">
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="map-pin" class="w-5 h-5 text-brand shrink-0"></i>
+                            <span>Bakı şəhəri, Nərimanov rayonu,<br>Əhməd Rəcəbli küçəsi 15</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i data-lucide="phone" class="w-5 h-5 text-brand shrink-0"></i>
+                            <a href="tel:+994501234567" class="hover:text-white transition">+994 50 123 45 67</a>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i data-lucide="mail" class="w-5 h-5 text-brand shrink-0"></i>
+                            <a href="mailto:info@fabbrica.az" class="hover:text-white transition">info@fabbrica.az</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Bottom Bar -->
+            <div class="pt-8 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4 text-xs">
+                <p>&copy; 2024 Fabbrica Mebel Fabriki. Bütün hüquqlar qorunur.</p>
+                <div class="flex gap-6">
+                    <a href="#" class="hover:text-brand transition">Məxfilik Siyasəti</a>
+                    <a href="#" class="hover:text-brand transition">İstifadə Şərtləri</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+
+    <script>
+        // Wait for DOM to be fully loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize Lucide icons
+            lucide.createIcons();
+
+            // Cart functionality
+            let cart = [];
+            let cartOpen = false;
+            
+            // Favorites functionality
+            let favorites = [];
+
+            function updateCartCount() {
+                const count = cart.reduce((total, item) => total + item.quantity, 0);
+                console.log('Updating cart count. Total items:', count);
+                console.log('Cart items for count:', cart);
+                
+                const cartCountElement = document.getElementById('cart-count');
+                console.log('Cart count element found:', !!cartCountElement);
+                
+                if (cartCountElement) {
+                    cartCountElement.textContent = count;
+                    console.log('Cart count updated to:', count);
+                } else {
+                    console.error('Cart count element not found!');
+                }
+            }
+            
+            function updateFavoritesCount() {
+                const count = favorites.length;
+                console.log('Updating favorites count. Total items:', count);
+                console.log('Favorites items:', favorites);
+                
+                const favoritesCountElement = document.getElementById('favorites-count');
+                console.log('Favorites count element found:', !!favoritesCountElement);
+                
+                if (favoritesCountElement) {
+                    favoritesCountElement.textContent = count;
+                    console.log('Favorites count updated to:', count);
+                } else {
+                    console.error('Favorites count element not found!');
+                }
+            }
+
+            function updateCartDisplay() {
+                const cartItems = document.getElementById('cart-items');
+                const cartTotal = document.getElementById('cart-total');
+                
+                if (cart.length === 0) {
+                    cartItems.innerHTML = `
+                        <div class="text-center text-slate-500 py-8">
+                            <i data-lucide="shopping-cart" class="w-12 h-12 mx-auto mb-4 text-slate-300"></i>
+                            <p>Səbətiniz boşdur</p>
+                        </div>
+                    `;
+                    cartTotal.textContent = '₼0';
+                } else {
+                    let html = '';
+                    let total = 0;
+                    
+                    cart.forEach(item => {
+                        html += `
+                            <div class="flex gap-4 mb-4 pb-4 border-b">
+                                <img src="${item.image}" alt="${item.name}" class="w-16 h-16 object-cover rounded">
+                                <div class="flex-1">
+                                    <h4 class="font-medium text-slate-900">${item.name}</h4>
+                                    <p class="text-brand font-semibold">₼${item.price}</p>
+                                    <div class="flex items-center gap-2 mt-2">
+                                        <button onclick="updateQuantity('${item.id}', -1)" class="p-1 hover:bg-slate-100 rounded">
+                                            <i data-lucide="minus" class="w-3 h-3"></i>
+                                        </button>
+                                        <span class="text-sm">${item.quantity}</span>
+                                        <button onclick="updateQuantity('${item.id}', 1)" class="p-1 hover:bg-slate-100 rounded">
+                                            <i data-lucide="plus" class="w-3 h-3"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <button onclick="removeFromCart('${item.id}')" class="p-1 hover:bg-slate-100 rounded">
+                                    <i data-lucide="trash-2" class="w-4 h-4 text-red-500"></i>
+                                </button>
+                            </div>
+                        `;
+                        total += item.price * item.quantity;
+                    });
+                    
+                    cartItems.innerHTML = html;
+                    cartTotal.textContent = `₼${total}`;
+                }
+                
+                lucide.createIcons();
+            }
+
+            function addToFavorites() {
+                console.log('Add to favorites button clicked');
+                
+                const product = {
+                    id: 'tv-cabinet-001',
+                    name: 'Modern TV Şkafı',
+                    price: 2499,
+                    image: 'https://picsum.photos/seed/product1/100/100'
+                };
+                
+                console.log('Product to add to favorites:', product);
+                console.log('Favorites before:', favorites);
+                
+                // Check if already in favorites
+                const existingFavorite = favorites.find(item => item.id === product.id);
+                if (existingFavorite) {
+                    // Remove from favorites if already exists
+                    favorites = favorites.filter(item => item.id !== product.id);
+                    console.log('Removed from favorites');
+                    showNotification('Məhsul seçilmişlərdən çıxarıldı!');
+                } else {
+                    // Add to favorites
+                    favorites.push(product);
+                    console.log('Added to favorites');
+                    showNotification('Məhsul seçilmişlərə əlavə edildi!');
+                }
+                
+                console.log('Favorites after:', favorites);
+                
+                updateFavoritesCount();
+            }
+
+            function addToCart() {
+                console.log('Add to cart button clicked');
+                const quantity = parseInt(document.querySelector('.quantity-input').value);
+                console.log('Quantity selected:', quantity);
+                
+                const product = {
+                    id: 'tv-cabinet-001',
+                    name: 'Modern TV Şkafı',
+                    price: 2499,
+                    image: 'https://picsum.photos/seed/product1/100/100',
+                    quantity: quantity
+                };
+                
+                console.log('Product to add:', product);
+                console.log('Cart before:', cart);
+                
+                const existingItem = cart.find(item => item.id === product.id);
+                if (existingItem) {
+                    existingItem.quantity += product.quantity;
+                    console.log('Updated existing item quantity to:', existingItem.quantity);
+                } else {
+                    cart.push(product);
+                    console.log('Added new item to cart');
+                }
+                
+                console.log('Cart after:', cart);
+                
+                updateCartCount();
+                updateCartDisplay();
+                showNotification('Məhsul səbətə əlavə edildi!');
+            }
+
+            function removeFromCart(productId) {
+                cart = cart.filter(item => item.id !== productId);
+                updateCartCount();
+                updateCartDisplay();
+            }
+
+            function updateQuantity(productId, change) {
+                const item = cart.find(item => item.id === productId);
+                if (item) {
+                    item.quantity += change;
+                    if (item.quantity <= 0) {
+                        removeFromCart(productId);
+                    } else {
+                        updateCartCount();
+                        updateCartDisplay();
+                    }
+                }
+            }
+
+            function showNotification(message) {
+                console.log('Showing notification:', message);
+                const notification = document.getElementById('notification');
+                const notificationText = document.getElementById('notification-text');
+                
+                console.log('Notification elements found:', {
+                    notification: !!notification,
+                    notificationText: !!notificationText
+                });
+                
+                if (notification && notificationText) {
+                    notificationText.textContent = message;
+                    // Show notification
+                    notification.classList.remove('translate-x-[150%]', 'opacity-0', 'pointer-events-none');
+                    notification.classList.add('translate-x-0', 'opacity-100');
+                    console.log('Notification displayed');
+                    
+                    setTimeout(() => {
+                        // Hide notification completely
+                        notification.classList.remove('translate-x-0', 'opacity-100');
+                        notification.classList.add('translate-x-[150%]', 'opacity-0', 'pointer-events-none');
+                        console.log('Notification hidden');
+                    }, 3000);
+                } else {
+                    console.error('Notification elements not found!');
+                }
+            }
+
+            function openCart() {
+                const sidebar = document.getElementById('cart-sidebar');
+                sidebar.classList.remove('translate-x-full');
+                cartOpen = true;
+            }
+
+            function closeCart() {
+                const sidebar = document.getElementById('cart-sidebar');
+                sidebar.classList.add('translate-x-full');
+                cartOpen = false;
+            }
+
+            // Quantity controls - Professional implementation
+            const quantityInput = document.querySelector('.quantity-input');
+            const minusBtn = document.querySelector('.quantity-btn--minus');
+            const plusBtn = document.querySelector('.quantity-btn--plus');
+            
+            console.log('Elements found:', {
+                quantityInput: !!quantityInput,
+                minusBtn: !!minusBtn,
+                plusBtn: !!plusBtn
+            });
+            
+            // Check if elements exist
+            if (quantityInput && minusBtn && plusBtn) {
+                function updateQuantity(change) {
+                    const currentValue = parseInt(quantityInput.value) || 1;
+                    const newValue = Math.max(1, Math.min(99, currentValue + change));
+                    quantityInput.value = newValue;
+                    console.log('Quantity updated:', currentValue, '->', newValue);
+                }
+                
+                minusBtn.addEventListener('click', () => {
+                    console.log('Minus button clicked');
+                    updateQuantity(-1);
+                });
+                
+                plusBtn.addEventListener('click', () => {
+                    console.log('Plus button clicked');
+                    updateQuantity(1);
+                });
+                
+                // Keyboard accessibility
+                quantityInput.addEventListener('keydown', (e) => {
+                    if (e.key === 'ArrowUp') {
+                        e.preventDefault();
+                        updateQuantity(1);
+                    } else if (e.key === 'ArrowDown') {
+                        e.preventDefault();
+                        updateQuantity(-1);
+                    }
+                });
+            } else {
+                console.error('Quantity selector elements not found');
+            }
+
+            // Image gallery
+            const mainImage = document.getElementById('main-image');
+            const thumbnails = document.querySelectorAll('.thumbnail-img');
+            
+            // Modal elements
+            const imageModal = document.getElementById('image-modal');
+            const modalImage = document.getElementById('modal-image');
+            const modalClose = document.getElementById('modal-close');
+            const modalPrev = document.getElementById('modal-prev');
+            const modalNext = document.getElementById('modal-next');
+            const imageCounter = document.getElementById('image-counter');
+            
+            // Product images array
+            const productImages = [
+                'https://picsum.photos/seed/product1/1200/1200',
+                'https://picsum.photos/seed/product2/1200/1200',
+                'https://picsum.photos/seed/product3/1200/1200',
+                'https://picsum.photos/seed/product4/1200/1200',
+                'https://picsum.photos/seed/product5/1200/1200'
+            ];
+            
+            let currentImageIndex = 0;
+
+            // Open modal when clicking main image
+            mainImage.addEventListener('click', () => {
+                currentImageIndex = 0;
+                updateModalImage();
+                openImageModal();
+            });
+            
+            // Open modal when clicking thumbnails
+            thumbnails.forEach((thumbnail, index) => {
+                thumbnail.addEventListener('click', () => {
+                    currentImageIndex = index;
+                    updateModalImage();
+                    openImageModal();
+                });
+            });
+            
+            function openImageModal() {
+                imageModal.classList.remove('opacity-0', 'pointer-events-none');
+                imageModal.classList.add('opacity-100');
+                document.body.style.overflow = 'hidden';
+            }
+            
+            function closeImageModal() {
+                imageModal.classList.remove('opacity-100');
+                imageModal.classList.add('opacity-0', 'pointer-events-none');
+                document.body.style.overflow = '';
+            }
+            
+            function updateModalImage() {
+                modalImage.src = productImages[currentImageIndex];
+                imageCounter.textContent = `${currentImageIndex + 1} / ${productImages.length}`;
+            }
+            
+            function nextImage() {
+                currentImageIndex = (currentImageIndex + 1) % productImages.length;
+                updateModalImage();
+            }
+            
+            function prevImage() {
+                currentImageIndex = (currentImageIndex - 1 + productImages.length) % productImages.length;
+                updateModalImage();
+            }
+            
+            // Modal event listeners
+            modalClose.addEventListener('click', closeImageModal);
+            modalNext.addEventListener('click', nextImage);
+            modalPrev.addEventListener('click', prevImage);
+            
+            // Close modal on background click
+            imageModal.addEventListener('click', (e) => {
+                if (e.target === imageModal) {
+                    closeImageModal();
+                }
+            });
+            
+            // Keyboard navigation
+            document.addEventListener('keydown', (e) => {
+                if (imageModal.classList.contains('opacity-100')) {
+                    if (e.key === 'Escape') closeImageModal();
+                    if (e.key === 'ArrowRight') nextImage();
+                    if (e.key === 'ArrowLeft') prevImage();
+                }
+            });
+            
+            // Touch/swipe support
+            let touchStartX = 0;
+            let touchEndX = 0;
+            
+            modalImage.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            });
+            
+            modalImage.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            });
+            
+            function handleSwipe() {
+                const swipeThreshold = 50;
+                const diff = touchStartX - touchEndX;
+                
+                if (Math.abs(diff) > swipeThreshold) {
+                    if (diff > 0) {
+                        nextImage(); // Swipe left, go to next
+                    } else {
+                        prevImage(); // Swipe right, go to previous
+                    }
+                }
+            }
+
+            thumbnails.forEach((thumbnail, index) => {
+                thumbnail.addEventListener('click', () => {
+                    const newSrc = thumbnail.src.replace('/200/200', '/800/800');
+                    mainImage.src = newSrc;
+                    
+                    thumbnails.forEach(t => {
+                        t.parentElement.classList.remove('ring-2', 'ring-brand', 'ring-offset-2');
+                    });
+                    thumbnail.parentElement.classList.add('ring-2', 'ring-brand', 'ring-offset-2');
+                });
+            });
+
+            // Event listeners
+            console.log('Setting up event listeners...');
+            
+            const addToCartBtn = document.getElementById('add-to-cart');
+            const cartToggleBtn = document.getElementById('cart-toggle');
+            const closeCartBtn = document.getElementById('close-cart');
+            const addToFavoritesBtn = document.getElementById('add-to-favorites');
+            
+            console.log('Elements found:', {
+                addToCartBtn: !!addToCartBtn,
+                cartToggleBtn: !!cartToggleBtn,
+                closeCartBtn: !!closeCartBtn,
+                addToFavoritesBtn: !!addToFavoritesBtn
+            });
+            
+            if (addToCartBtn) addToCartBtn.addEventListener('click', addToCart);
+            if (cartToggleBtn) cartToggleBtn.addEventListener('click', openCart);
+            if (closeCartBtn) closeCartBtn.addEventListener('click', closeCart);
+            
+            // Favorites button event listener
+            if (addToFavoritesBtn) {
+                console.log('Adding event listener to favorites button');
+                addToFavoritesBtn.addEventListener('click', function(e) {
+                    console.log('Favorites button clicked!', e);
+                    addToFavorites();
+                });
+            } else {
+                console.error('Favorites button not found!');
+            }
+
+            // Mobile menu
+            document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+                document.getElementById('mobile-menu').classList.remove('hidden');
+            });
+
+            document.getElementById('close-menu-btn').addEventListener('click', () => {
+                document.getElementById('mobile-menu').classList.add('hidden');
+            });
+
+            // Initialize
+            updateCartCount();
+            updateFavoritesCount();
+            updateCartDisplay();
+        });
+    </script>
+</body>
+</html>

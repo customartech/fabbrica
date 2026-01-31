@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qeydiyyat - Fabbrica Mebel</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: 'rgb(189, 184, 137)',
+                        brandDark: 'rgb(169, 169, 169)',
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-white text-slate-800 antialiased selection:bg-slate-900 selection:text-white overflow-x-hidden">
+
+    <!-- Background Pattern -->
+    <div class="fixed inset-0 bg-gradient-to-br from-slate-50 via-white to-slate-100 -z-10"></div>
+    <div class="fixed inset-0 opacity-5 -z-10">
+        <div class="absolute inset-0" style="background-image: url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23000000" fill-opacity="0.1"%3E%3Cpath d="M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
+    </div>
+
+    <!-- Back to Home Button -->
+    <div class="fixed top-6 left-6 z-10">
+        <a href="index2.html" class="flex items-center gap-2 text-slate-600 hover:text-brand transition px-4 py-2 rounded-lg hover:bg-slate-50 shadow-sm">
+            <i data-lucide="arrow-left" class="w-4 h-4"></i>
+            <span class="text-sm font-medium">Ana Səhifə</span>
+        </a>
+    </div>
+
+    <!-- Main Register Container -->
+    <main class="min-h-screen flex items-center justify-center px-6 py-12">
+        <div class="w-full max-w-md">
+            <!-- Logo Section -->
+            <div class="text-center mb-8">
+                <div class="inline-flex items-center justify-center w-20 h-20 bg-slate-100 rounded-2xl mb-4">
+                    <img src="http://ebrd.customar.tech/fabbrica1/svg/logo-dark.svg" 
+                         alt="Fabbrica Logo" 
+                         class="w-12 h-12"
+                         onerror="this.style.display='none'; this.parentElement.innerHTML+='<h1 class=\'text-2xl font-bold text-slate-900 tracking-widest\'>F</h1>'">
+                </div>
+                <h1 class="text-2xl font-bold text-slate-900 mb-2">Fabbrica Mebel</h1>
+                <p class="text-slate-600 text-sm">Yeni hesab yaradın</p>
+            </div>
+
+            <!-- Register Form -->
+            <div class="bg-white rounded-2xl shadow-xl border border-slate-100 p-8">
+                <form id="registerForm" class="space-y-4">
+                    <!-- Name Field -->
+                    <div>
+                        <label for="name" class="block text-sm font-medium text-slate-700 mb-2">
+                            Ad və Soyad
+                        </label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <i data-lucide="user" class="w-5 h-5 text-slate-400"></i>
+                            </div>
+                            <input type="text" 
+                                   id="name" 
+                                   name="name" 
+                                   required
+                                   class="w-full pl-10 pr-3 py-3 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent transition"
+                                   placeholder="Adınız və soyadınız">
+                        </div>
+                    </div>
+
+                    <!-- Email Field -->
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-slate-700 mb-2">
+                            Email ünvanı
+                        </label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <i data-lucide="mail" class="w-5 h-5 text-slate-400"></i>
+                            </div>
+                            <input type="email" 
+                                   id="email" 
+                                   name="email" 
+                                   required
+                                   class="w-full pl-10 pr-3 py-3 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent transition"
+                                   placeholder="nümunə@email.com">
+                        </div>
+                    </div>
+
+                    <!-- Password Field -->
+                    <div>
+                        <label for="password" class="block text-sm font-medium text-slate-700 mb-2">
+                            Şifrə
+                        </label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <i data-lucide="lock" class="w-5 h-5 text-slate-400"></i>
+                            </div>
+                            <input type="password" 
+                                   id="password" 
+                                   name="password" 
+                                   required
+                                   class="w-full pl-10 pr-10 py-3 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent transition"
+                                   placeholder="Minimum 8 simvol">
+                            <button type="button" 
+                                    id="togglePassword"
+                                    class="absolute inset-y-0 right-0 pr-3 flex items-center">
+                                <i data-lucide="eye" class="w-5 h-5 text-slate-400 hover:text-slate-600 transition"></i>
+                            </button>
+                        </div>
+                        <!-- Password Strength Indicator -->
+                        <div class="mt-2">
+                            <div class="flex gap-1">
+                                <div class="password-strength-bar h-1 flex-1 bg-slate-200 rounded-full transition-colors"></div>
+                                <div class="password-strength-bar h-1 flex-1 bg-slate-200 rounded-full transition-colors"></div>
+                                <div class="password-strength-bar h-1 flex-1 bg-slate-200 rounded-full transition-colors"></div>
+                                <div class="password-strength-bar h-1 flex-1 bg-slate-200 rounded-full transition-colors"></div>
+                            </div>
+                            <p class="text-xs text-slate-500 mt-1">Şifrə gücü: <span id="passwordStrengthText">Zəif</span></p>
+                        </div>
+                    </div>
+
+                    <!-- Confirm Password Field -->
+                    <div>
+                        <label for="confirmPassword" class="block text-sm font-medium text-slate-700 mb-2">
+                            Şifrəni təsdiqlə
+                        </label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <i data-lucide="lock" class="w-5 h-5 text-slate-400"></i>
+                            </div>
+                            <input type="password" 
+                                   id="confirmPassword" 
+                                   name="confirmPassword" 
+                                   required
+                                   class="w-full pl-10 pr-3 py-3 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent transition"
+                                   placeholder="Şifrəni təkrar daxil edin">
+                        </div>
+                    </div>
+
+                    <!-- Terms and Conditions -->
+                    <div class="flex items-start">
+                        <input type="checkbox" 
+                               id="terms" 
+                               name="terms" 
+                               required
+                               class="w-4 h-4 text-brand border-slate-300 rounded focus:ring-brand focus:ring-2 mt-1">
+                        <label for="terms" class="ml-2 text-sm text-slate-600">
+                            <a href="#" class="text-brand hover:text-brandDark transition">İstifadə Şərtləri</a> və 
+                            <a href="#" class="text-brand hover:text-brandDark transition">Gizlilik Siyasəti</a> ilə razıyam
+                        </label>
+                    </div>
+
+                    <!-- Newsletter Checkbox -->
+                    <div class="flex items-center">
+                        <input type="checkbox" 
+                               id="newsletter" 
+                               name="newsletter" 
+                               class="w-4 h-4 text-brand border-slate-300 rounded focus:ring-brand focus:ring-2">
+                        <label for="newsletter" class="ml-2 text-sm text-slate-600">
+                            Xüsusi təkliflər və yeniliklər üçün bülletenə abunə ol
+                        </label>
+                    </div>
+
+                    <!-- Register Button -->
+                    <button type="submit" 
+                            class="w-full bg-slate-900 text-white py-3 px-4 rounded-xl font-medium hover:bg-brand transition duration-300 flex items-center justify-center gap-2 shadow-lg">
+                        <i data-lucide="user-plus" class="w-4 h-4"></i>
+                        Qeydiyyatdan Keç
+                    </button>
+                </form>
+
+                <!-- Login Link -->
+                <div class="text-center mt-6 pt-6 border-t border-slate-100">
+                    <p class="text-sm text-slate-600">
+                        Hesabınız var? 
+                        <a href="login.html" class="text-brand hover:text-brandDark font-medium transition">
+                            Daxil olun
+                        </a>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Footer Links -->
+            <div class="text-center mt-8 text-xs text-slate-500">
+                <div class="flex items-center justify-center gap-4 mb-4">
+                    <a href="#" class="hover:text-brand transition">Kömək</a>
+                    <span>•</span>
+                    <a href="#" class="hover:text-brand transition">Dəstək</a>
+                    <span>•</span>
+                    <a href="#" class="hover:text-brand transition">FAQ</a>
+                </div>
+                <p>© 2024 Fabbrica Mebel. Bütün hüquqlar qorunur.</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- JavaScript -->
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Toggle Password Visibility
+        const togglePassword = document.getElementById('togglePassword');
+        const passwordInput = document.getElementById('password');
+        
+        togglePassword.addEventListener('click', () => {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            
+            // Toggle icon
+            const icon = togglePassword.querySelector('i');
+            if (type === 'text') {
+                icon.setAttribute('data-lucide', 'eye-off');
+            } else {
+                icon.setAttribute('data-lucide', 'eye');
+            }
+            lucide.createIcons();
+        });
+
+        // Password Strength Checker
+        passwordInput.addEventListener('input', (e) => {
+            const password = e.target.value;
+            const strengthBars = document.querySelectorAll('.password-strength-bar');
+            const strengthText = document.getElementById('passwordStrengthText');
+            
+            let strength = 0;
+            
+            if (password.length >= 8) strength++;
+            if (password.match(/[a-z]/) && password.match(/[A-Z]/)) strength++;
+            if (password.match(/[0-9]/)) strength++;
+            if (password.match(/[^a-zA-Z0-9]/)) strength++;
+            
+            // Reset bars
+            strengthBars.forEach(bar => {
+                bar.className = 'password-strength-bar h-1 flex-1 bg-slate-200 rounded-full transition-colors';
+            });
+            
+            // Update bars based on strength
+            const colors = ['bg-red-500', 'bg-orange-500', 'bg-yellow-500', 'bg-green-500'];
+            const texts = ['Zəif', 'Orta', 'Güclü', 'Çox Güclü'];
+            
+            for (let i = 0; i < strength; i++) {
+                strengthBars[i].classList.add(colors[strength - 1]);
+            }
+            
+            strengthText.textContent = texts[strength - 1] || 'Zəif';
+        });
+
+        // Form Submission
+        const registerForm = document.getElementById('registerForm');
+        
+        registerForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const formData = new FormData(registerForm);
+            const name = formData.get('name');
+            const email = formData.get('email');
+            const password = formData.get('password');
+            const confirmPassword = formData.get('confirmPassword');
+            const terms = formData.get('terms');
+            
+            // Basic validation
+            if (!name || !email || !password || !confirmPassword) {
+                showNotification('Zəhmət olmasa bütün xanaları doldurun', 'error');
+                return;
+            }
+            
+            // Email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                showNotification('Zəhmət olmasa düzgün email ünvanı daxil edin', 'error');
+                return;
+            }
+            
+            // Password validation
+            if (password.length < 8) {
+                showNotification('Şifrə ən azı 8 simvoldan ibarət olmalıdır', 'error');
+                return;
+            }
+            
+            // Password confirmation
+            if (password !== confirmPassword) {
+                showNotification('Şifrələr uyğun gəlmir', 'error');
+                return;
+            }
+            
+            // Terms validation
+            if (!terms) {
+                showNotification('Zəhmət olmasa istifadə şərtləri ilə razı olun', 'error');
+                return;
+            }
+            
+            // Simulate registration (replace with actual API call)
+            console.log('Register attempt:', { name, email, password });
+            
+            // Show loading state
+            const submitBtn = registerForm.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i data-lucide="loader-2" class="w-4 h-4 animate-spin"></i> Qeydiyyatdan keçilir...';
+            submitBtn.disabled = true;
+            lucide.createIcons();
+            
+            // Simulate API call
+            setTimeout(() => {
+                // Reset button
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+                lucide.createIcons();
+                
+                // For demo, we'll just redirect to login
+                showNotification('Qeydiyyat uğurla tamamlandı! Zəhmət olmasa daxil olun.', 'success');
+                
+                setTimeout(() => {
+                    window.location.href = 'login.html';
+                }, 2000);
+            }, 2000);
+        });
+
+        // Notification Function
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.className = `fixed top-20 right-6 z-50 px-6 py-4 rounded-lg shadow-lg transform translate-x-full transition-transform duration-300 flex items-center gap-3`;
+            
+            if (type === 'success') {
+                notification.classList.add('bg-green-500', 'text-white');
+                notification.innerHTML = `<i data-lucide="check-circle" class="w-5 h-5"></i><span>${message}</span>`;
+            } else if (type === 'error') {
+                notification.classList.add('bg-red-500', 'text-white');
+                notification.innerHTML = `<i data-lucide="alert-circle" class="w-5 h-5"></i><span>${message}</span>`;
+            } else {
+                notification.classList.add('bg-slate-900', 'text-white');
+                notification.innerHTML = `<i data-lucide="info" class="w-5 h-5"></i><span>${message}</span>`;
+            }
+            
+            document.body.appendChild(notification);
+            lucide.createIcons();
+            
+            // Animate in
+            setTimeout(() => {
+                notification.classList.remove('translate-x-full');
+                notification.classList.add('translate-x-0');
+            }, 100);
+            
+            // Remove after 3 seconds
+            setTimeout(() => {
+                notification.classList.add('translate-x-full');
+                notification.classList.remove('translate-x-0');
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 3000);
+        }
+
+        // Reveal Animation
+        function reveal() {
+            const reveals = document.querySelectorAll('.reveal');
+            
+            reveals.forEach(element => {
+                const windowHeight = window.innerHeight;
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    element.classList.add('active');
+                }
+            });
+        }
+        
+        window.addEventListener('scroll', reveal);
+        reveal(); // Initial check
+    </script>
+</body>
+</html>
