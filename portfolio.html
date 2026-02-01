@@ -21,25 +21,7 @@
             }
         }
     </script>
-    <style>
-        .glass-panel {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        /* Scroll Reveal Animation Classes */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease-out;
-        }
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    </style>
-</head>
+    </head>
 <body class="bg-white">
 
     <!-- MOBILE MENU OVERLAY -->
@@ -410,93 +392,7 @@
         </div>
     </footer>
 
-    <script>
-        // Initialize Lucide icons
-        lucide.createIcons();
-
-        // --- MOBILE MENU LOGIC ---
-        const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
-        const openMenuBtn = document.getElementById('open-menu-btn');
-        const closeMenuBtn = document.getElementById('close-menu-btn');
-
-        function toggleMenu() {
-            const isClosed = mobileMenuOverlay.classList.contains('translate-x-full');
-            if (isClosed) {
-                mobileMenuOverlay.classList.remove('translate-x-full');
-            } else {
-                mobileMenuOverlay.classList.add('translate-x-full');
-            }
-        }
-
-        // Add event listeners only if elements exist
-        if (openMenuBtn) {
-            openMenuBtn.addEventListener('click', toggleMenu);
-        }
-        if (closeMenuBtn) {
-            closeMenuBtn.addEventListener('click', toggleMenu);
-        }
-
-        // --- LANGUAGE DROPDOWN LOGIC ---
-        const langBtn = document.getElementById('lang-btn');
-        const langDropdown = document.getElementById('lang-dropdown');
-        const langChevron = document.getElementById('lang-chevron');
-
-        function toggleLangDropdown(e) {
-            e.stopPropagation();
-            const isHidden = langDropdown.classList.contains('hidden');
-            
-            if (isHidden) {
-                langDropdown.classList.remove('hidden', 'opacity-0', 'invisible');
-                langDropdown.classList.add('opacity-100', 'visible');
-                langChevron.style.transform = 'rotate(180deg)';
-            } else {
-                langDropdown.classList.add('hidden', 'opacity-0', 'invisible');
-                langDropdown.classList.remove('opacity-100', 'visible');
-                langChevron.style.transform = 'rotate(0deg)';
-            }
-        }
-
-        if (langBtn) {
-            langBtn.addEventListener('click', toggleLangDropdown);
-        }
-
-        function closeAllDropdowns() {
-            if (langDropdown) {
-                langDropdown.classList.add('hidden', 'opacity-0', 'invisible');
-                langDropdown.classList.remove('opacity-100', 'visible');
-                if (langChevron) langChevron.style.transform = 'rotate(0deg)';
-            }
-        }
-
-        // Close dropdowns when clicking outside
-        document.addEventListener('click', closeAllDropdowns);
-
-        // --- SCROLL ANIMATIONS ---
-        function initScrollAnimations() {
-            const reveals = document.querySelectorAll('.reveal');
-
-            const revealObserver = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('active');
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, {
-                root: null,
-                threshold: 0.15,
-                rootMargin: "0px 0px -50px 0px"
-            });
-
-            reveals.forEach(reveal => {
-                revealObserver.observe(reveal);
-            });
-        }
-
-        // Initialize on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            initScrollAnimations();
-        });
-    </script>
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
 </body>
 </html>

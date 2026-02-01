@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fabbrica Mebel - Haqqımızda</title>
+    <title>Haqqımızda - Fabbrica Mebel</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Custom Tailwind Config -->
     <script>
         tailwind.config = {
             theme: {
@@ -17,15 +17,13 @@
                         brand: 'rgb(189, 184, 137)',
                         brandDark: 'rgb(169, 169, 169)',
                     },
-                    fontFamily: {
-                        'sans': ['Inter', 'system-ui', 'sans-serif'],
-                    },
                 }
             }
         }
     </script>
-</head>
-<body class="bg-white text-slate-800 antialiased selection:bg-slate-900 selection:text-white overflow-x-hidden">
+    </head>
+<body class="bg-white">
+
     <!-- MOBILE MENU OVERLAY -->
     <div id="mobile-menu-overlay" class="fixed inset-0 bg-slate-900/98 z-50 transform translate-x-full transition-transform duration-300 flex flex-col justify-center items-center md:hidden backdrop-blur-xl">
         <!-- Close Button -->
@@ -49,7 +47,7 @@
             <a href="#" class="hover:text-brand transition" onclick="toggleMenu()">Əlaqə</a>
         </nav>
         <a href="#" class="mt-12 bg-brand text-white px-8 py-3 rounded-full font-medium flex items-center gap-2 hover:bg-brandDark transition shadow-lg shadow-brand/20">
-            <i data-lucide="shopping-bag" class="w-5 h-5"></i> Mağaza
+            <i class="fas fa-shopping-bag w-5 h-5 text-white"></i> Mağaza
         </a>
     </div>
 
@@ -66,59 +64,76 @@
                          onerror="this.style.display='none'; this.parentElement.innerHTML+='<h1 class=\'text-2xl md:text-3xl font-bold text-slate-900 tracking-widest\'>FABBRICA</h1>'">
                 </div>
 
-                <!-- Search Bar (Center) -->
-                <div class="hidden md:flex flex-1 max-w-xl mx-8">
-                    <div class="relative w-full">
-                        <input type="text" 
-                               placeholder="Məhsullarda axtar..." 
-                               class="w-full px-4 py-2.5 pr-12 bg-slate-50 border border-slate-200 rounded-full text-sm focus:outline-none focus:border-brand focus:bg-white transition">
-                        <button class="absolute right-2 top-1/2 -translate-y-1/2 bg-brand text-white p-2 rounded-full hover:bg-brandDark transition">
-                            <i data-lucide="search" class="w-4 h-4"></i>
-                        </button>
-                    </div>
-                </div>
-
                 <!-- Right Actions -->
-                <div class="flex items-center gap-4">
-                    <!-- Mobile Search Toggle -->
-                    <button class="md:hidden text-slate-600 hover:text-brand transition">
-                        <i data-lucide="search" class="w-6 h-6"></i>
-                    </button>
+                            <!-- Desktop Nav & Actions -->
+            <div class="hidden md:flex items-center gap-8">
+                <!-- Menu Links -->
+                <nav class="flex items-center gap-8 text-black text-sm font-medium tracking-wide">
+                    <a href="index.html" class="group relative py-2">
+                        Ana Səhifə
+                        <span class="absolute bottom-0 left-0 w-0 h-px bg-brand transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="about.html" class="group relative py-2 text-brand">
+                        Haqqımızda
+                        <span class="absolute bottom-0 left-0 w-0 h-px bg-brand transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#" class="group relative py-2">
+                        Xidmətlər
+                        <span class="absolute bottom-0 left-0 w-0 h-px bg-brand transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="portfolio.html" class="group relative py-2">
+                        Layihələr
+                        <span class="absolute bottom-0 left-0 w-0 h-px bg-brand transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="blog.html" class="group relative py-2">
+                        Bloq
+                        <span class="absolute bottom-0 left-0 w-0 h-px bg-brand transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="contact.html" class="group relative py-2">
+                        Əlaqə
+                        <span class="absolute bottom-0 left-0 w-0 h-px bg-brand transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                </nav>
 
-                    <!-- Login -->
-                    <button class="flex items-center gap-2 text-slate-600 hover:text-brand transition px-3 py-2 rounded-lg hover:bg-slate-50">
-                        <i data-lucide="user" class="w-5 h-5"></i>
-                        <span class="hidden sm:inline text-sm font-medium">Giriş</span>
-                    </button>
+                <!-- Divider -->
+                <div class="h-6 w-px bg-white/20"></div>
 
-                    <!-- Favorites -->
-                    <button class="flex items-center gap-2 text-slate-600 hover:text-brand transition px-3 py-2 rounded-lg hover:bg-slate-50 relative">
-                        <i data-lucide="heart" class="w-5 h-5"></i>
-                        <span class="hidden sm:inline text-sm font-medium">Seçilmişlər</span>
-                        <span class="absolute -top-1 -right-1 bg-brand text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">0</span>
-                    </button>
+                <!-- Right Actions (Lang & Shop) -->
+                <div class="flex items-center gap-6">
+                    <!-- Language Dropdown -->
+                    <div class="relative group">
+                        <button id="lang-btn" class="text-slate-700 text-xs font-semibold hover:text-brand transition flex items-center gap-1 focus:outline-none bg-slate-100 px-3 py-1.5 rounded-full border border-slate-300 shadow-sm">
+                            AZ <i class="fas fa-chevron-down w-3 h-3 transition-transform" id="lang-chevron"></i>
+                        </button>
+                        <!-- Dropdown Menu -->
+                        <div id="lang-dropdown" class="absolute top-full right-0 mt-2 w-24 bg-white rounded-xl shadow-xl py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                            <a href="#" class="block px-4 py-2 text-xs font-medium hover:bg-slate-50 hover:text-brand transition first:rounded-t-xl">AZ</a>
+                            <a href="#" class="block px-4 py-2 text-xs font-medium hover:bg-slate-50 hover:text-brand transition">EN</a>
+                            <a href="#" class="block px-4 py-2 text-xs font-medium hover:bg-slate-50 hover:text-brand transition last:rounded-b-xl">RU</a>
+                        </div>
+                    </div>
 
-                    <!-- Cart -->
-                    <button class="flex items-center gap-2 text-slate-600 hover:text-brand transition px-3 py-2 rounded-lg hover:bg-slate-50 relative">
-                        <i data-lucide="shopping-cart" class="w-5 h-5"></i>
-                        <span class="hidden sm:inline text-sm font-medium">Səbətim</span>
-                        <span class="absolute -top-1 -right-1 bg-brand text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">0</span>
-                    </button>
+                    <!-- Shop Button -->
+                    <a href="#" class="flex items-center gap-2 bg-slate-900 hover:bg-brand hover:border-brand hover:text-white text-white border border-white/20 backdrop-blur-md px-5 py-2.5 rounded-full transition-all duration-300 text-sm font-medium group">
+                        <i class="fas fa-shopping-bag w-4 h-4 text-white"></i>
+                        Mağaza
+                    </a>
                 </div>
+            </div>
             </div>
         </div>
 
         <!-- Second Row: Product Categories -->
         <div class="px-6 md:px-12 py-3 bg-slate-900 text-white border-b border-slate-700">
-            <div class="flex items-center justify-between max-w-7xl mx-auto md:px-12">
+            <div class="flex items-center flex-start max-w-7xl mx-auto md:px-12">
                 <!-- Categories -->
                 <div class="flex items-center gap-6 overflow-x-auto scrollbar-hide">
                     <!-- Bütün məhsullar Dropdown (moved outside overflow) -->
                 </div>
                 
                 <!-- Dropdown Container (outside overflow) -->
-                <div class="flex items-center gap-6">
-                    <div class="relative group" id="bütün-mehsullar-dropdown">
+                <ul class="flex items-center gap-6">
+                    <li class="relative group" id="bütün-mehsullar-dropdown">
                         <button class="flex items-center gap-2 text-white hover:text-brand transition whitespace-nowrap text-sm font-medium">
                             <span>Bütün məhsullar</span>
                             <i data-lucide="chevron-down" class="w-4 h-4"></i>
@@ -164,27 +179,17 @@
                                 </a>
                             </div>
                         </div>
-                    </div>
+                    </li>
                     
-                    <button class="text-white hover:text-brand transition whitespace-nowrap text-sm font-medium">Mətbəx mebeli</button>
-                    <button class="text-white hover:text-brand transition whitespace-nowrap text-sm font-medium">Yataq otağı</button>
-                    <button class="text-white hover:text-brand transition whitespace-nowrap text-sm font-medium">Qonaq otağı</button>
-                    <button class="text-white hover:text-brand transition whitespace-nowrap text-sm font-medium">Ofis mebeli</button>
-                    <button class="text-white hover:text-brand transition whitespace-nowrap text-sm font-medium">Uşaq otağı</button>
-                    <button class="text-white hover:text-brand transition whitespace-nowrap text-sm font-medium">Divanlar</button>
-                    <button class="text-white hover:text-brand transition whitespace-nowrap text-sm font-medium">Stullar</button>
-                    <button class="text-white hover:text-brand transition whitespace-nowrap text-sm font-medium">Dolablar</button>
-                </div>
-
-                <!-- Language & Currency -->
-                <div class="hidden md:flex items-center gap-4">
-                    <!-- Language -->
-                    <div class="relative">
-                        <button class="flex items-center gap-1 text-slate-600 hover:text-brand transition text-sm font-medium">
-                            AZ <i data-lucide="chevron-down" class="w-3 h-3"></i>
-                        </button>
-                    </div>
-                </div>
+                    <li><button class="text-white hover:text-brand transition whitespace-nowrap text-sm font-medium">Mətbəx mebeli</button></li>
+                    <li><button class="text-white hover:text-brand transition whitespace-nowrap text-sm font-medium">Yataq otağı</button></li>
+                    <li><button class="text-white hover:text-brand transition whitespace-nowrap text-sm font-medium">Qonaq otağı</button></li>
+                    <li><button class="text-white hover:text-brand transition whitespace-nowrap text-sm font-medium">Ofis mebeli</button></li>
+                    <li><button class="text-white hover:text-brand transition whitespace-nowrap text-sm font-medium">Uşaq otağı</button></li>
+                    <li><button class="text-white hover:text-brand transition whitespace-nowrap text-sm font-medium">Divanlar</button></li>
+                    <li><button class="text-white hover:text-brand transition whitespace-nowrap text-sm font-medium">Stullar</button></li>
+                    <li><button class="text-white hover:text-brand transition whitespace-nowrap text-sm font-medium">Dolablar</button></li>
+                </ul>
             </div>
         </div>
         
@@ -192,464 +197,235 @@
         <div id="dropdown-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden" onclick="closeAllDropdowns()"></div>
     </nav>
 
-    <!-- HERO SECTION -->
-    <header class="relative h-[20vh] w-full overflow-hidden">
-        <!-- Background Image -->
-        <div class="absolute inset-0">
+    <!-- ABOUT HERO SECTION -->
+    <header class="relative h-[50vh] w-full overflow-hidden">
+        <!-- Background Image Container -->
+        <div class="absolute inset-0 bg-slate-900">
             <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=80&w=2000&auto=format&fit=crop" 
-                 alt="Fabbrica Haqqımızda" 
-                 class="w-full h-full object-cover">
-            <div class="absolute inset-0 bg-gradient-to-r from-slate-900/70 to-transparent"></div>
+                 alt="About Us" 
+                 class="w-full h-full object-cover transition-opacity duration-1000">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
         </div>
         
-        <!-- Text Overlay -->
-        <div class="absolute inset-0 flex items-center justify-center z-10">
-            <div class="text-center text-white px-6 max-w-4xl">
-                <h1 class="text-2xl md:text-4xl font-bold mb-4 leading-tight">
-                    Haqqımızda
-                </h1>
-                <p class="text-lg md:text-xl opacity-90 max-w-3xl mx-auto leading-relaxed">
-                    1995-ci ildən bəri Azərbaycanın ən etibarlı mebel istehsalçısı
-                </p>
+        <!-- HERO CONTENT WRAPPER -->
+        <div class="absolute inset-0 z-10 px-6 md:px-12 flex items-center justify-center">
+            <div class="text-center text-white max-w-4xl">
+                <h1 class="text-4xl md:text-6xl font-light mb-6">Haqqımızda</h1>
+                <p class="text-xl md:text-2xl font-light opacity-90">Estetika və funksionallığın harmoniyası</p>
             </div>
         </div>
     </header>
 
-    <!-- ABOUT SECTION -->
-    <section class="py-16 md:py-20 px-6 md:px-12 max-w-7xl mx-auto reveal">
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12">
-            <!-- Left Label -->
-            <div class="md:col-span-2">
-                 <span class="inline-block bg-slate-100 text-slate-600 px-4 py-1.5 rounded-full text-xs font-semibold">Haqqımızda</span>
-            </div>
-
-            <!-- Right Content -->
-            <div class="md:col-span-10">
-                <h2 class="text-2xl md:text-3xl font-medium leading-tight mb-8 text-slate-900 max-w-4xl">
-                    Fabbrica — innovativ mebel həllərinin aparıcı təchizatçısıdır. Çoxillik təcrübə və dizayna olan sevgimizlə, biz məkanları dəyişdiririk.
-                </h2>
-                
-                <div class="flex flex-col md:flex-row gap-8 items-start">
-                    <img src="https://images.unsplash.com/photo-1581539250439-c9230958b143?q=80&w=300&auto=format&fit=crop" 
-                         class="w-full md:w-48 h-32 object-cover rounded-sm shadow-sm reveal delay-200" alt="Emalatxana">
-                    <p class="text-slate-500 text-sm leading-relaxed max-w-md pt-2 reveal delay-300">
-                        Ekspert komandamız konsultasiyadan quraşdırmaya qədər mükəmməl nəticəyə zəmanət verir. Biz müştəri məmnuniyyətinə və ideyalarınızı reallığa çevirmək bacarığımıza güvənirik.
+    <!-- ABOUT CONTENT SECTION -->
+    <section class="py-16 md:py-20 px-6 md:px-12 max-w-7xl mx-auto">
+        <!-- Company Story -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-20 reveal">
+            <div>
+                <h2 class="text-3xl font-light text-slate-900 mb-6">Bizim Hekayəmiz</h2>
+                <div class="space-y-4 text-slate-600 leading-relaxed">
+                    <p>
+                        Fabbrica 2010-cu ildə Bakıda yaradılmışdır və Azərbaycan mebel bazarında lider mövqe tutur. Bizim missiyamız müştərilərimizə yalnız yüksək keyfiyyətli mebel deyil, həm də evlərini və ofislərini daha rahat və estetik edəcək tam həllər təqdim etməkdir.
+                    </p>
+                    <p>
+                        10 ildən çoxdur ki, biz Azərbaycanın müxtəlif regionlarında minlərlə layihə həyata keçirmişik. Hər bir mebel parçasımız peşəkar dizaynerlər tərəfindən hazırlanır və ən müasir texnologiyalarla istehsal olunur.
+                    </p>
+                    <p>
+                        Bizim üçün mebel sadəcə əşya deyil - bu həyat tərzidir, bu komfortdur, bu estetikadır. Müştəri məmnuniyyəti bizim üçün ən prioritet məsələdir.
                     </p>
                 </div>
             </div>
-        </div>
-
-        <!-- Stats with Dividers -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 mt-20 md:mt-24 gap-8 md:gap-0" id="stats-container"> 
-            <!-- Item 1 -->
-            <div class="pb-8 md:pb-0 md:pr-6 md:border-r border-slate-200 reveal delay-100">
-                <h3 class="text-4xl md:text-5xl font-light text-slate-900 mb-2 flex">
-                    <span class="counter" data-target="25">0</span><span>+</span>
-                </h3>
-                <p class="text-sm font-bold text-brand mb-1">İllik təcrübə</p>
-                <p class="text-xs text-slate-400 leading-relaxed">Peşəkar təcrübə və etibarlı quraşdırma</p>
-            </div>
-             <!-- Item 2 -->
-            <div class="py-8 md:py-0 md:px-6 md:border-r border-slate-200 border-t md:border-t-0 border-slate-100 reveal delay-200">
-                <h3 class="text-4xl md:text-5xl font-light text-slate-900 mb-2 flex">
-                    <span class="counter" data-target="40">0</span><span>%</span>
-                </h3>
-                <p class="text-sm font-bold text-brand mb-1">Daha səmərəli</p>
-                <p class="text-xs text-slate-400 leading-relaxed">Müasir texnologiyalar və avadanlıqlar</p>
-            </div>
-             <!-- Item 3 -->
-            <div class="py-8 md:py-0 md:px-6 md:border-r border-slate-200 border-t md:border-t-0 border-slate-100 reveal delay-300">
-                <h3 class="text-4xl md:text-5xl font-light text-slate-900 mb-2 flex">
-                    <span class="counter" data-target="100">0</span><span>%</span>
-                </h3>
-                <p class="text-sm font-bold text-brand mb-1">Müştəri məmnuniyyəti</p>
-                <p class="text-xs text-slate-400 leading-relaxed">Keyfiyyətə və xidmətə zəmanət</p>
-            </div>
-             <!-- Item 4 -->
-            <div class="py-8 md:py-0 md:pl-6 border-t md:border-t-0 border-slate-100 reveal delay-400">
-                <h3 class="text-4xl md:text-5xl font-light text-slate-900 mb-2 flex">
-                    <span class="counter" data-target="10">0</span><span>k+</span>
-                </h3>
-                <p class="text-sm font-bold text-brand mb-1">Layihə</p>
-                <p class="text-xs text-slate-400 leading-relaxed">Müxtəlif ölçülü uğurlu layihələr</p>
+            <div class="relative">
+                <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=80&w=800&auto=format&fit=crop" 
+                     alt="Fabbrica Workshop" 
+                     class="w-full h-96 object-cover rounded-2xl">
+                <div class="absolute -bottom-6 -right-6 bg-brand text-white p-6 rounded-2xl shadow-xl">
+                    <div class="text-3xl font-bold mb-2">10+</div>
+                    <div class="text-sm">İl Təcrübə</div>
+                </div>
             </div>
         </div>
-    </section>
 
-            <!-- VALUES SECTION -->
-    <section class="py-16 md:py-20 px-6 md:px-12 max-w-7xl mx-auto reveal">
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12">
-            <!-- Left Label -->
-            <div class="md:col-span-2">
-                 <span class="inline-block bg-slate-100 text-slate-600 px-4 py-1.5 rounded-full text-xs font-semibold">Dəyərlərimiz</span>
+        <!-- Mission & Values -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mb-20">
+            <!-- Mission -->
+            <div class="bg-slate-50 rounded-2xl p-8 reveal">
+                <div class="w-12 h-12 bg-brand rounded-full flex items-center justify-center mb-6">
+                    <i class="fas fa-bullseye text-white w-6 h-6"></i>
+                </div>
+                <h3 class="text-2xl font-semibold text-slate-900 mb-4">Missiyamız</h3>
+                <p class="text-slate-600 leading-relaxed">
+                    Müştərilərimizin həyatını daha rahat və gözəl etmək üçün innovativ mebel həlləri təqdim etmək. Hər bir layihədə keyfiyyət, estetika və funksionallığı birləşdirmək.
+                </p>
             </div>
 
-            <!-- Right Content -->
-            <div class="md:col-span-10">
-                <h2 class="text-2xl md:text-3xl font-medium leading-tight mb-8 text-slate-900 max-w-4xl">
-                    Bizim üçün ən vacib dəyərlər: keyfiyyət, etibar, innovasiya və müştəri məmnuniyyəti
-                </h2>
-                
-                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                    <!-- Value 1 -->
-                    <div class="group">
-                        <div class="flex items-start gap-4">
-                            <div class="w-12 h-12 bg-brand rounded-lg flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
-                                <i data-lucide="award" class="w-6 h-6 text-white"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-semibold text-slate-900 mb-3">Keyfiyyət</h3>
-                                <p class="text-slate-600 leading-relaxed mb-4">
-                                    Hər bir məhsulumuz yüksək keyfiyyət standartlarına uyğun olaraq ən yaxşı materiallardan hazırlanır
-                                </p>
-                                <button class="flex items-center gap-2 text-xs border-b border-brand pb-1 text-brand hover:text-white hover:border-white transition">
-                                    Ətraflı <i data-lucide="arrow-right" class="w-3 h-3"></i>
-                                </button>
-                            </div>
+            <!-- Vision -->
+            <div class="bg-slate-50 rounded-2xl p-8 reveal">
+                <div class="w-12 h-12 bg-brand rounded-full flex items-center justify-center mb-6">
+                    <i class="fas fa-eye text-white w-6 h-6"></i>
+                </div>
+                <h3 class="text-2xl font-semibold text-slate-900 mb-4">Baxışımız</h3>
+                <p class="text-slate-600 leading-relaxed">
+                    Azərbaycanın ən innovativ mebel şirkəti olmaq və müştərilərimizə müasir, ekoloji və davamlı mebel həlləri təklif etmək.
+                </p>
+            </div>
+        </div>
+
+        <!-- Values -->
+        <div class="mb-20 reveal">
+            <h2 class="text-3xl font-light text-slate-900 mb-12 text-center">Dəyərlərimiz</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Quality -->
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-brand/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-award text-brand w-8 h-8"></i>
+                    </div>
+                    <h3 class="font-semibold text-slate-900 mb-2">Keyfiyyət</h3>
+                    <p class="text-sm text-slate-600">Hər bir məhsulumuz ən yüksək keyfiyyət standartlarına cavab verir</p>
+                </div>
+
+                <!-- Innovation -->
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-brand/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-lightbulb text-brand w-8 h-8"></i>
+                    </div>
+                    <h3 class="font-semibold text-slate-900 mb-2">İnnovasiya</h3>
+                    <p class="text-sm text-slate-600">Həmişə ən müasir texnologiyaları və dizayn trendlərini izləyirik</p>
+                </div>
+
+                <!-- Customer Focus -->
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-brand/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-users text-brand w-8 h-8"></i>
+                    </div>
+                    <h3 class="font-semibold text-slate-900 mb-2">Müştəri Mərkəzli</h3>
+                    <p class="text-sm text-slate-600">Müştəri ehtiyacları bizim üçün hər zaman birinci prioritetdir</p>
+                </div>
+
+                <!-- Sustainability -->
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-brand/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-leaf text-brand w-8 h-8"></i>
+                    </div>
+                    <h3 class="font-semibold text-slate-900 mb-2">Davamlılıq</h3>
+                    <p class="text-sm text-slate-600">Ekoloji cəhətdən təmiz materiallar və istehsal prosesləri</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Statistics -->
+        <div class="bg-slate-900 text-white rounded-2xl p-12 mb-20 reveal">
+            <h2 class="text-3xl font-light text-white mb-12 text-center">Nəticələrimiz</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-brand mb-2">500+</div>
+                    <div class="text-sm text-white/80">Layihə</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-brand mb-2">1000+</div>
+                    <div class="text-sm text-white/80">Müştəri</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-brand mb-2">50+</div>
+                    <div class="text-sm text-white/80">Peşəkar</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-brand mb-2">10+</div>
+                    <div class="text-sm text-white/80">İl Təcrübə</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Team Section -->
+        <div class="mb-20 reveal">
+            <h2 class="text-3xl font-light text-slate-900 mb-12 text-center">Komandamız</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Team Member 1 -->
+                <div class="team-card bg-white rounded-2xl shadow-lg overflow-hidden">
+                    <div class="h-64 bg-slate-200 flex items-center justify-center">
+                        <i class="fas fa-user-tie text-6xl text-slate-400"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-slate-900 mb-2">Əli Məmmədov</h3>
+                        <p class="text-brand font-medium mb-4">CEO & Founder</p>
+                        <p class="text-sm text-slate-600 mb-4">10 ildən çox təcrübəsi olan mebel sənayesi lideri</p>
+                        <div class="flex gap-3">
+                            <a href="#" class="w-8 h-8 bg-slate-100 rounded-full flex items-center justify-center hover:bg-brand hover:text-white transition">
+                                <i class="fab fa-linkedin w-4 h-4 text-slate-600"></i>
+                            </a>
+                            <a href="#" class="w-8 h-8 bg-slate-100 rounded-full flex items-center justify-center hover:bg-brand hover:text-white transition">
+                                <i class="fas fa-envelope w-4 h-4 text-slate-600"></i>
+                            </a>
                         </div>
                     </div>
+                </div>
 
-                    <!-- Value 2 -->
-                    <div class="group">
-                        <div class="flex items-start gap-4">
-                            <div class="w-12 h-12 bg-brand rounded-lg flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
-                                <i data-lucide="users" class="w-6 h-6 text-white"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-semibold text-slate-900 mb-3">Etibar</h3>
-                                <p class="text-slate-600 leading-relaxed mb-4">
-                                    25 ildən artıq fəaliyyətimiz ərzində minlərlə müştərinin etibarını qazandık
-                                </p>
-                                <button class="flex items-center gap-2 text-xs border-b border-brand pb-1 text-brand hover:text-white hover:border-white transition">
-                                    Ətraflı <i data-lucide="arrow-right" class="w-3 h-3"></i>
-                                </button>
-                            </div>
+                <!-- Team Member 2 -->
+                <div class="team-card bg-white rounded-2xl shadow-lg overflow-hidden">
+                    <div class="h-64 bg-slate-200 flex items-center justify-center">
+                        <i class="fas fa-user-tie text-6xl text-slate-400"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-slate-900 mb-2">Leyla Əliyeva</h3>
+                        <p class="text-brand font-medium mb-4">Head Designer</p>
+                        <p class="text-sm text-slate-600 mb-4">Müasir dizayn trendləri və innovativ həllər mütəxəssisi</p>
+                        <div class="flex gap-3">
+                            <a href="#" class="w-8 h-8 bg-slate-100 rounded-full flex items-center justify-center hover:bg-brand hover:text-white transition">
+                                <i class="fab fa-linkedin w-4 h-4 text-slate-600"></i>
+                            </a>
+                            <a href="#" class="w-8 h-8 bg-slate-100 rounded-full flex items-center justify-center hover:bg-brand hover:text-white transition">
+                                <i class="fas fa-envelope w-4 h-4 text-slate-600"></i>
+                            </a>
                         </div>
                     </div>
+                </div>
 
-                    <!-- Value 3 -->
-                    <div class="group">
-                        <div class="flex items-start gap-4">
-                            <div class="w-12 h-12 bg-brand rounded-lg flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
-                                <i data-lucide="zap" class="w-6 h-6 text-white"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-semibold text-slate-900 mb-3">İnnovasiya</h3>
-                                <p class="text-slate-600 leading-relaxed mb-4">
-                                    Həmişə yeni texnologiyaları və dizayn trendlərini izləyərək müasir həllər təqdim edirik
-                                </p>
-                                <button class="flex items-center gap-2 text-xs border-b border-brand pb-1 text-brand hover:text-white hover:border-white transition">
-                                    Ətraflı <i data-lucide="arrow-right" class="w-3 h-3"></i>
-                                </button>
-                            </div>
-                        </div>
+                <!-- Team Member 3 -->
+                <div class="team-card bg-white rounded-2xl shadow-lg overflow-hidden">
+                    <div class="h-64 bg-slate-200 flex items-center justify-center">
+                        <i class="fas fa-user-tie text-6xl text-slate-400"></i>
                     </div>
-
-                    <!-- Value 4 -->
-                    <div class="group">
-                        <div class="flex items-start gap-4">
-                            <div class="w-12 h-12 bg-brand rounded-lg flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
-                                <i data-lucide="heart" class="w-6 h-6 text-white"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-semibold text-slate-900 mb-3">Müştəri Məmnuniyyəti</h3>
-                                <p class="text-slate-600 leading-relaxed mb-4">
-                                    Müştəri məmnuniyyəti bizim üçün ən prioritet məsələdir və 100% zəmanət veririk
-                                </p>
-                                <button class="flex items-center gap-2 text-xs border-b border-brand pb-1 text-brand hover:text-white hover:border-white transition">
-                                    Ətraflı <i data-lucide="arrow-right" class="w-3 h-3"></i>
-                                </button>
-                            </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-slate-900 mb-2">Kamal Hüseynov</h3>
+                        <p class="text-brand font-medium mb-4">Production Manager</p>
+                        <p class="text-sm text-slate-600 mb-4">İstehsal prosesləri və keyfiyyətə nəzarət mütəxəssisi</p>
+                        <div class="flex gap-3">
+                            <a href="#" class="w-8 h-8 bg-slate-100 rounded-full flex items-center justify-center hover:bg-brand hover:text-white transition">
+                                <i class="fab fa-linkedin w-4 h-4 text-slate-600"></i>
+                            </a>
+                            <a href="#" class="w-8 h-8 bg-slate-100 rounded-full flex items-center justify-center hover:bg-brand hover:text-white transition">
+                                <i class="fas fa-envelope w-4 h-4 text-slate-600"></i>
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
 
-            <!-- RESULTS SECTION -->
-    <section class="py-16 md:py-20 px-6 md:px-12 max-w-7xl mx-auto reveal">
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12">
-            <!-- Left Label -->
-            <div class="md:col-span-2">
-                 <span class="inline-block bg-slate-100 text-slate-600 px-4 py-1.5 rounded-full text-xs font-semibold">Nəticələrimiz</span>
-            </div>
-
-            <!-- Right Content -->
-            <div class="md:col-span-10">
-                <h2 class="text-2xl md:text-3xl font-medium leading-tight mb-8 text-slate-900 max-w-4xl">
-                    Rəqəmlərlə bizim uğur hekayəmiz: 25 il təcrübə, 10,000+ müştəri və 100% məmnuniyyət
-                </h2>
-                
-                <!-- Stats with Dividers -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 md:gap-0"> 
-                    <!-- Item 1 -->
-                    <div class="pb-8 md:pb-0 md:pr-6 md:border-r border-slate-200">
-                        <h3 class="text-4xl md:text-5xl font-light text-slate-900 mb-2 flex">
-                            <span class="counter" data-target="25">0</span><span>+</span>
-                        </h3>
-                        <p class="text-sm font-bold text-brand mb-1">İl Təcrübə</p>
-                        <p class="text-xs text-slate-400 leading-relaxed">Peşəkar təcrübə və etibarlı quraşdırma</p>
-                    </div>
-                     <!-- Item 2 -->
-                    <div class="py-8 md:py-0 md:px-6 md:border-r border-slate-200 border-t md:border-t-0 border-slate-100">
-                        <h3 class="text-4xl md:text-5xl font-light text-slate-900 mb-2 flex">
-                            <span class="counter" data-target="10">0</span><span>k+</span>
-                        </h3>
-                        <p class="text-sm font-bold text-brand mb-1">Müştəri</p>
-                        <p class="text-xs text-slate-400 leading-relaxed">Minlərlən razı müştəri portfeli</p>
-                    </div>
-                     <!-- Item 3 -->
-                    <div class="py-8 md:py-0 md:px-6 md:border-r border-slate-200 border-t md:border-t-0 border-slate-100">
-                        <h3 class="text-4xl md:text-5xl font-light text-slate-900 mb-2 flex">
-                            <span class="counter" data-target="50">0</span><span>k+</span>
-                        </h3>
-                        <p class="text-sm font-bold text-brand mb-1">Məhsul</p>
-                        <p class="text-xs text-slate-400 leading-relaxed">Yüksək keyfiyyətli mebel məhsulları</p>
-                    </div>
-                     <!-- Item 4 -->
-                    <div class="py-8 md:py-0 md:pl-6 border-t md:border-t-0 border-slate-100">
-                        <h3 class="text-4xl md:text-5xl font-light text-slate-900 mb-2 flex">
-                            <span class="counter" data-target="100">0</span><span>%</span>
-                        </h3>
-                        <p class="text-sm font-bold text-brand mb-1">Məmnuniyyət</p>
-                        <p class="text-xs text-slate-400 leading-relaxed">Tam müştəri məmnuniyyəti zəmanəti</p>
-                    </div>
-                </div>
+        <!-- CTA Section -->
+        <div class="bg-brand/10 rounded-2xl p-12 text-center reveal">
+            <h2 class="text-3xl font-light text-slate-900 mb-6">Bizimlə Əməkdaşlıq Etin</h2>
+            <p class="text-slate-600 mb-8 max-w-2xl mx-auto">
+                Sizin üçün ən yaxşı mebel həllərini hazırlamaq üçün hazırıq. Layihəniz haqqında danışmaq üçün bizimlə əlaqə saxlayın.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="portfolio.html" class="bg-brand text-white px-8 py-3 rounded-full font-medium hover:bg-brandDark transition-all duration-300 flex items-center justify-center gap-2">
+                    <i class="fas fa-briefcase w-4 h-4"></i>
+                    Layihələrimiz
+                </a>
+                <a href="contact.html" class="bg-slate-900 text-white px-8 py-3 rounded-full font-medium hover:bg-slate-800 transition-all duration-300 flex items-center justify-center gap-2">
+                    <i class="fas fa-phone w-4 h-4"></i>
+                    Əlaqə Saxlayın
+                </a>
             </div>
         </div>
     </section>
-
-            <!-- TEAM SECTION -->
-    <section class="py-16 md:py-20 px-6 md:px-12 max-w-7xl mx-auto reveal">
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12">
-            <!-- Left Label -->
-            <div class="md:col-span-2">
-                 <span class="inline-block bg-slate-100 text-slate-600 px-4 py-1.5 rounded-full text-xs font-semibold">Komandamız</span>
-            </div>
-
-            <!-- Right Content -->
-            <div class="md:col-span-10">
-                <h2 class="text-2xl md:text-3xl font-medium leading-tight mb-8 text-slate-900 max-w-4xl">
-                    Peşəkar komandamız sizin xidmətinizdədir: 15+ illik təcrübə və ixtisaslaşmış biliklər
-                </h2>
-                
-                <div class="grid md:grid-cols-3 gap-8">
-                    <!-- Team Member 1 -->
-                    <div class="group">
-                        <div class="flex items-start gap-4">
-                            <div class="relative">
-                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400&auto=format&fit=crop" 
-                                     alt="CEO" 
-                                     class="w-16 h-16 rounded-full object-cover group-hover:scale-110 transition-transform">
-                                <div class="absolute -bottom-1 -right-1 w-6 h-6 bg-brand rounded-full flex items-center justify-center">
-                                    <i data-lucide="check" class="w-3 h-3 text-white"></i>
-                                </div>
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-semibold text-slate-900 mb-1">Əli Məmmədov</h3>
-                                <p class="text-brand font-semibold mb-3">CEO</p>
-                                <p class="text-slate-600 leading-relaxed mb-4">
-                                    15 ildən artıq mebel sənayesi təcrübəsi ilə şirkətin rəhbəridir
-                                </p>
-                                <div class="flex gap-2">
-                                    <a href="#" class="w-8 h-8 bg-slate-100 rounded-full flex items-center justify-center hover:bg-brand hover:text-white transition">
-                                        <i data-lucide="linkedin" class="w-4 h-4"></i>
-                                    </a>
-                                    <a href="#" class="w-8 h-8 bg-slate-100 rounded-full flex items-center justify-center hover:bg-brand hover:text-white transition">
-                                        <i data-lucide="mail" class="w-4 h-4"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Team Member 2 -->
-                    <div class="group">
-                        <div class="flex items-start gap-4">
-                            <div class="relative">
-                                <img src="https://images.unsplash.com/photo-1494790108755-2616b332c1cd?q=80&w=400&auto=format&fit=crop" 
-                                     alt="Designer" 
-                                     class="w-16 h-16 rounded-full object-cover group-hover:scale-110 transition-transform">
-                                <div class="absolute -bottom-1 -right-1 w-6 h-6 bg-brand rounded-full flex items-center justify-center">
-                                    <i data-lucide="check" class="w-3 h-3 text-white"></i>
-                                </div>
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-semibold text-slate-900 mb-1">Leyla Əliyeva</h3>
-                                <p class="text-brand font-semibold mb-3">Baş Dizayner</p>
-                                <p class="text-slate-600 leading-relaxed mb-4">
-                                    Müasir dizayn həlləri və mebel konseptlərinin müəllifi
-                                </p>
-                                <div class="flex gap-2">
-                                    <a href="#" class="w-8 h-8 bg-slate-100 rounded-full flex items-center justify-center hover:bg-brand hover:text-white transition">
-                                        <i data-lucide="linkedin" class="w-4 h-4"></i>
-                                    </a>
-                                    <a href="#" class="w-8 h-8 bg-slate-100 rounded-full flex items-center justify-center hover:bg-brand hover:text-white transition">
-                                        <i data-lucide="mail" class="w-4 h-4"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Team Member 3 -->
-                    <div class="group">
-                        <div class="flex items-start gap-4">
-                            <div class="relative">
-                                <img src="https://images.unsplash.com/photo-1472099645785-2616b332c1cd?q=80&w=400&auto=format&fit=crop" 
-                                     alt="Production Manager" 
-                                     class="w-16 h-16 rounded-full object-cover group-hover:scale-110 transition-transform">
-                                <div class="absolute -bottom-1 -right-1 w-6 h-6 bg-brand rounded-full flex items-center justify-center">
-                                    <i data-lucide="check" class="w-3 h-3 text-white"></i>
-                                </div>
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-semibold text-slate-900 mb-1">Kamal Hüseynov</h3>
-                                <p class="text-brand font-semibold mb-3">İstehsal Rəhbəri</p>
-                                <p class="text-slate-600 leading-relaxed mb-4">
-                                    İstehsal prosesinin optimallaşdırılması və keyfiyyətə nəzarət
-                                </p>
-                                <div class="flex gap-2">
-                                    <a href="#" class="w-8 h-8 bg-slate-100 rounded-full flex items-center justify-center hover:bg-brand hover:text-white transition">
-                                        <i data-lucide="linkedin" class="w-4 h-4"></i>
-                                    </a>
-                                    <a href="#" class="w-8 h-8 bg-slate-100 rounded-full flex items-center justify-center hover:bg-brand hover:text-white transition">
-                                        <i data-lucide="mail" class="w-4 h-4"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-            <!-- CONTACT SECTION -->
-    <section class="py-16 md:py-20 px-6 md:px-12 max-w-7xl mx-auto reveal">
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12">
-            <!-- Left Label -->
-            <div class="md:col-span-2">
-                 <span class="inline-block bg-slate-100 text-slate-600 px-4 py-1.5 rounded-full text-xs font-semibold">Əlaqə</span>
-            </div>
-
-            <!-- Right Content -->
-            <div class="md:col-span-10">
-                <h2 class="text-2xl md:text-3xl font-medium leading-tight mb-8 text-slate-900 max-w-4xl">
-                    Sualınız var? Bizimlə əlaqə saxlayın: Peşəkar dəstək komandamız hər zaman xidmətinizdədir
-                </h2>
-                
-                <div class="grid lg:grid-cols-2 gap-12">
-                    <!-- Contact Info -->
-                    <div class="space-y-6">
-                        <!-- Address -->
-                        <div class="group">
-                            <div class="flex items-start gap-4">
-                                <div class="w-12 h-12 bg-brand rounded-lg flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
-                                    <i data-lucide="map-pin" class="w-6 h-6 text-white"></i>
-                                </div>
-                                <div>
-                                    <h3 class="text-xl font-semibold text-slate-900 mb-2">Ünvan</h3>
-                                    <p class="text-slate-600 leading-relaxed">
-                                        Bakı şəhəri, Nəsimi rayonu, Azadlıq prospekti 20
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Phone -->
-                        <div class="group">
-                            <div class="flex items-start gap-4">
-                                <div class="w-12 h-12 bg-brand rounded-lg flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
-                                    <i data-lucide="phone" class="w-6 h-6 text-white"></i>
-                                </div>
-                                <div>
-                                    <h3 class="text-xl font-semibold text-slate-900 mb-2">Telefon</h3>
-                                    <p class="text-slate-600 leading-relaxed">
-                                        +994 12 123 45 67
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Email -->
-                        <div class="group">
-                            <div class="flex items-start gap-4">
-                                <div class="w-12 h-12 bg-brand rounded-lg flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
-                                    <i data-lucide="mail" class="w-6 h-6 text-white"></i>
-                                </div>
-                                <div>
-                                    <h3 class="text-xl font-semibold text-slate-900 mb-2">E-poçt</h3>
-                                    <p class="text-slate-600 leading-relaxed">
-                                        info@fabbrica.az
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Hours -->
-                        <div class="group">
-                            <div class="flex items-start gap-4">
-                                <div class="w-12 h-12 bg-brand rounded-lg flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
-                                    <i data-lucide="clock" class="w-6 h-6 text-white"></i>
-                                </div>
-                                <div>
-                                    <h3 class="text-xl font-semibold text-slate-900 mb-2">İş Vaxtı</h3>
-                                    <p class="text-slate-600 leading-relaxed">
-                                        Bazar ertəsi: 09:00 - 18:00<br>
-                                        Şənbə: 10:00 - 16:00
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Contact Form -->
-                    <div class="bg-slate-50 rounded-2xl p-8">
-                        <form class="space-y-6">
-                            <div class="grid md:grid-cols-2 gap-6">
-                                <div>
-                                    <label class="block text-sm font-medium text-slate-700 mb-2">Adınız</label>
-                                    <input type="text" class="w-full px-4 py-3 border border-slate-200 rounded-xl focus:outline-none focus:border-brand focus:ring-2 focus:ring-brand/20 transition">
-                                </div>
-                                <div>
-                                    <label class="block text-sm font-medium text-slate-700 mb-2">E-poçt</label>
-                                    <input type="email" class="w-full px-4 py-3 border border-slate-200 rounded-xl focus:outline-none focus:border-brand focus:ring-2 focus:ring-brand/20 transition">
-                                </div>
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium text-slate-700 mb-2">Mövzu</label>
-                                <select class="w-full px-4 py-3 border border-slate-200 rounded-xl focus:outline-none focus:border-brand focus:ring-2 focus:ring-brand/20 transition">
-                                    <option>Məhsul haqqında</option>
-                                    <option>Sifariş</option>
-                                    <option>Şikayət</option>
-                                    <option>Digər</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium text-slate-700 mb-2">Mesajınız</label>
-                                <textarea rows="5" class="w-full px-4 py-3 border border-slate-200 rounded-xl focus:outline-none focus:border-brand focus:ring-2 focus:ring-brand/20 transition resize-none"></textarea>
-                            </div>
-                            <button type="submit" class="w-full bg-slate-900 text-white px-6 py-2.5 text-sm rounded-full font-medium flex items-center justify-center gap-2 hover:bg-brand hover:text-white transition duration-300 group shadow-lg shrink-0">
-                                <i data-lucide="send" class="w-4 h-4"></i>
-                                Mesaj Göndər
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-        </div>
-    </main>
 
     <!-- FOOTER -->
-    <footer class="bg-slate-900 text-white py-16">
-        <div class="max-w-7xl mx-auto px-6 md:px-12">
-            <div class="grid md:grid-cols-3 gap-12">
-                <!-- Brand Info -->
-                <div class="space-y-6">
+    <footer class="bg-slate-900 text-slate-400 text-sm border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-6 md:px-12 py-16">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+                <!-- Brand Column -->
+                <div class="flex flex-col gap-6">
                     <!-- Logo Image -->
                     <img src="http://ebrd.customar.tech/fabbrica1/svg/logo-dark.svg" 
                          alt="Fabbrica Logo" 
@@ -661,13 +437,13 @@
                     </p>
                     <div class="flex gap-4">
                         <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-brand hover:text-white transition-all duration-300">
-                            <i data-lucide="instagram" class="w-5 h-5"></i>
+                            <i class="fab fa-instagram w-5 h-5 text-white"></i>
                         </a>
                         <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-brand hover:text-white transition-all duration-300">
-                            <i data-lucide="facebook" class="w-5 h-5"></i>
+                            <i class="fab fa-facebook w-5 h-5 text-white"></i>
                         </a>
                         <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-brand hover:text-white transition-all duration-300">
-                            <i data-lucide="linkedin" class="w-5 h-5"></i>
+                            <i class="fab fa-linkedin w-5 h-5 text-white"></i>
                         </a>
                     </div>
                 </div>
@@ -676,45 +452,47 @@
                 <div>
                     <h3 class="text-white font-semibold mb-6 tracking-wide uppercase text-xs">Menu</h3>
                     <ul class="flex flex-col gap-4">
-                        <li><a href="#" class="hover:text-brand transition-colors">Haqqımızda</a></li>
+                        <li><a href="index.html" class="hover:text-brand transition-colors">Ana Səhifə</a></li>
+                        <li><a href="about.html" class="text-brand">Haqqımızda</a></li>
                         <li><a href="#" class="hover:text-brand transition-colors">Xidmətlər</a></li>
-                        <li><a href="#" class="hover:text-brand transition-colors">Materiallar</a></li>
-                        <li><a href="#" class="hover:text-brand transition-colors">Layihələr</a></li>
-                        <li><a href="#" class="hover:text-brand transition-colors">Bloq</a></li>
+                        <li><a href="portfolio.html" class="hover:text-brand transition-colors">Layihələr</a></li>
+                        <li><a href="blog.html" class="hover:text-brand transition-colors">Bloq</a></li>
+                        <li><a href="contact.html" class="hover:text-brand transition-colors">Əlaqə</a></li>
                     </ul>
                 </div>
 
                 <!-- Contact Info -->
                 <div>
                     <h3 class="text-white font-semibold mb-6 tracking-wide uppercase text-xs">Əlaqə</h3>
-                    <ul class="flex flex-col gap-4">
-                        <li class="flex items-start gap-3">
-                            <i data-lucide="map-pin" class="w-5 h-5 text-brand shrink-0"></i>
-                            <span>Bakı şəhəri, Nərimanov rayonu,<br>Əhməd Rəcəbli küçəsi 15</span>
-                        </li>
-                        <li class="flex items-center gap-3">
-                            <i data-lucide="phone" class="w-5 h-5 text-brand shrink-0"></i>
-                            <a href="tel:+994501234567" class="hover:text-white transition">+994 50 123 45 67</a>
-                        </li>
-                        <li class="flex items-center gap-3">
-                            <i data-lucide="mail" class="w-5 h-5 text-brand shrink-0"></i>
-                            <a href="mailto:info@fabbrica.az" class="hover:text-white transition">info@fabbrica.az</a>
-                        </li>
-                    </ul>
+                    <div class="flex flex-col gap-4">
+                        <div class="flex items-center gap-3">
+                            <i class="fas fa-phone text-brand"></i>
+                            <span>+994 12 345 67 89</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i class="fas fa-envelope text-brand"></i>
+                            <span>info@fabbrica.az</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i class="fas fa-map-marker-alt text-brand"></i>
+                            <span>Bakı, Azərbaycan</span>
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <!-- Bottom Bar -->
-            <div class="pt-8 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4 text-xs">
-                <p>&copy; 2024 Fabbrica Mebel Fabriki. Bütün hüquqlar qorunur.</p>
-                <div class="flex gap-6">
-                    <a href="#" class="hover:text-brand transition">Məxfilik Siyasəti</a>
-                    <a href="#" class="hover:text-brand transition">İstifadə Şərtləri</a>
+            <div class="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-slate-500 text-sm">© 2024 Fabbrica Mebel. Bütün hüquqlar qorunur.</p>
+                <div class="flex gap-6 text-slate-500 text-sm">
+                    <a href="#" class="hover:text-brand transition-colors">Məxfi Şərtləri</a>
+                    <a href="#" class="hover:text-brand transition-colors">Gizlilik Siyasəti</a>
                 </div>
             </div>
         </div>
     </footer>
 
+    <!-- JavaScript -->
     <script src="js/main.js"></script>
 </body>
 </html>

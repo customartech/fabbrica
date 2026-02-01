@@ -10,6 +10,27 @@ document.addEventListener('DOMContentLoaded', function() {
     initDropdowns();
     initFormValidation();
     initAnimations();
+    
+    // Initialize thank you page if we're on it
+    initThankYouPage();
+    
+    // Initialize shop page scroll reveal
+    initShopScrollReveal();
+    
+    // Initialize cart page if we're on it
+    initCartPage();
+    
+    // Initialize checkout page if we're on it
+    initCheckoutPage();
+    
+    // Initialize contact page if we're on it
+    initContactPage();
+    
+    // Initialize index page if we're on it
+    initIndexPage();
+    
+    // Initialize project detail page if we're on it
+    initProjectDetailPage();
 });
 
 // Mobile Menu Toggle
@@ -375,11 +396,496 @@ function debounce(func, wait) {
     };
 }
 
+// Thank You Page Functions
+function initThankYouPage() {
+    // Check if we're on the thank you page
+    if (!document.querySelector('.bg-gradient-to-br')) return;
+    
+    // Generate random order number
+    generateOrderNumber();
+    
+    // Add animation classes to elements
+    addThankYouAnimations();
+    
+    // Start countdown timer
+    startCountdown();
+    
+    // Add parallax effect
+    initParallax();
+}
+
+function generateOrderNumber() {
+    const orderNumberElement = document.querySelector('.text-2xl.font-bold.text-slate-900');
+    if (orderNumberElement) {
+        const randomNum = Math.floor(Math.random() * 9999) + 1;
+        orderNumberElement.textContent = `#FAB-2024-${randomNum.toString().padStart(4, '0')}`;
+    }
+}
+
+function addThankYouAnimations() {
+    // Don't add reveal class to avoid animation conflicts
+    // Add success icon animation
+    const successIcon = document.querySelector('.w-24.h-24.bg-brand\\/20');
+    if (successIcon) {
+        successIcon.classList.add('success-icon');
+    }
+    
+    // Add button hover effects
+    const buttons = document.querySelectorAll('a[class*="rounded-full"]');
+    buttons.forEach(button => {
+        if (button.textContent.includes('Ana səhifəyə qayıt')) {
+            button.classList.add('btn-brand');
+        } else if (button.textContent.includes('Alış-verişə davam et')) {
+            button.classList.add('btn-secondary');
+        }
+    });
+    
+    // Add step card classes
+    const stepCardIcons = document.querySelectorAll('.text-center .w-16.h-16');
+    stepCardIcons.forEach(icon => {
+        icon.classList.add('step-icon');
+        const card = icon.closest('.text-center');
+        if (card) {
+            card.classList.add('step-card');
+        }
+    });
+    
+    // Add contact card classes
+    const contactCards = document.querySelectorAll('.bg-white.rounded-lg.shadow-sm.p-6');
+    contactCards.forEach(card => {
+        card.classList.add('contact-card');
+    });
+}
+
+function startCountdown() {
+    const orderTime = new Date();
+    const timerElement = document.createElement('div');
+    timerElement.className = 'text-sm text-slate-500 mt-4';
+    timerElement.innerHTML = 'Sifarişiniz <span id="countdown">0</span> dəqiqə əvvəl qəbul edildi';
+    
+    const orderNumberContainer = document.querySelector('.bg-white.rounded-lg.shadow-sm.p-6');
+    if (orderNumberContainer && !document.getElementById('countdown')) {
+        orderNumberContainer.appendChild(timerElement);
+        
+        setInterval(() => {
+            const now = new Date();
+            const diff = Math.floor((now - orderTime) / 60000); // minutes
+            const countdownElement = document.getElementById('countdown');
+            if (countdownElement) {
+                countdownElement.textContent = diff;
+            }
+        }, 60000); // update every minute
+    }
+}
+
+function initParallax() {
+    // Disable parallax effect for thank you page
+    return;
+}
+
+// Shop Page Scroll Reveal
+function initShopScrollReveal() {
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+            }
+        });
+    }, observerOptions);
+
+    // Observe all scroll-reveal elements
+    const revealElements = document.querySelectorAll('.scroll-reveal');
+    revealElements.forEach(el => observer.observe(el));
+}
+
+// Cart Page Functions
+function initCartPage() {
+    // Quantity controls
+    document.querySelectorAll('.fa-plus').forEach(btn => {
+        btn.parentElement.addEventListener('click', () => {
+            const quantitySpan = btn.parentElement.nextElementSibling;
+            const currentQuantity = parseInt(quantitySpan.textContent);
+            quantitySpan.textContent = currentQuantity + 1;
+            updateCartTotal();
+        });
+    });
+
+    document.querySelectorAll('.fa-minus').forEach(btn => {
+        btn.parentElement.addEventListener('click', () => {
+            const quantitySpan = btn.parentElement.nextElementSibling;
+            const currentQuantity = parseInt(quantitySpan.textContent);
+            if (currentQuantity > 1) {
+                quantitySpan.textContent = currentQuantity - 1;
+                updateCartTotal();
+            }
+        });
+    });
+}
+
+// Update cart total
+function updateCartTotal() {
+    const cartItems = document.querySelectorAll('.cart-item');
+    let subtotal = 0;
+    let itemCount = 0;
+    
+    cartItems.forEach(item => {
+        const price = parseInt(item.dataset.price);
+        const quantity = parseInt(item.querySelector('.quantity').textContent);
+        subtotal += price * quantity;
+        itemCount += quantity;
+    });
+    
+    const shipping = 50;
+    const tax = Math.round(subtotal * 0.02); // 2% tax
+    const total = subtotal + shipping + tax;
+    
+    // Update summary
+    const summaryElements = document.querySelectorAll('.flex.justify-between.text-slate-600');
+    if (summaryElements[0]) {
+        summaryElements[0].innerHTML = `
+            <span>Məhsulların dəyəri (${itemCount})</span>
+            <span>₼${subtotal.toLocaleString()}</span>
+        `;
+    }
+    
+    if (summaryElements[1]) {
+        summaryElements[1].innerHTML = `
+            <span>Çatdırılma</span>
+            <span>₼${shipping}</span>
+        `;
+    }
+    
+    if (summaryElements[2]) {
+        summaryElements[2].innerHTML = `
+            <span>Vergi</span>
+            <span>₼${tax}</span>
+        `;
+    }
+    
+    const cartTotal = document.getElementById('cart-total');
+    if (cartTotal) {
+        cartTotal.textContent = `₼${total.toLocaleString()}`;
+    }
+}
+
+// Update quantity
+function updateQuantity(button, change) {
+    const quantitySpan = button.parentElement.querySelector('.quantity');
+    const currentQuantity = parseInt(quantitySpan.textContent);
+    const newQuantity = Math.max(1, currentQuantity + change);
+    quantitySpan.textContent = newQuantity;
+    updateCartTotal();
+}
+
+// Remove item
+function removeItem(button) {
+    const cartItem = button.closest('.cart-item');
+    cartItem.remove();
+    updateCartTotal();
+    
+    // Check if cart is empty
+    const remainingItems = document.querySelectorAll('.cart-item');
+    if (remainingItems.length === 0) {
+        const flexContainer = document.querySelector('.flex-1');
+        if (flexContainer) {
+            flexContainer.innerHTML = `
+                <div class="bg-white rounded-lg shadow-sm p-12 text-center">
+                    <i class="fas fa-shopping-cart text-6xl text-slate-300 mb-4"></i>
+                    <h3 class="text-xl font-semibold text-slate-900 mb-2">Səbətiniz boşdur</h3>
+                    <p class="text-slate-500 mb-6">Alış-verişə davam etmək üçün mağazaya qayıdın</p>
+                    <a href="shop.html" class="inline-flex items-center gap-2 bg-brand text-white px-6 py-3 rounded-full font-medium hover:bg-brandDark transition">
+                        <i class="fas fa-arrow-left"></i>
+                        Mağazaya qayıt
+                    </a>
+                </div>
+            `;
+        }
+    }
+}
+
+// Checkout Page Functions
+function initCheckoutPage() {
+    // Form validation
+    const submitButton = document.querySelector('button[class*="bg-brand"]');
+    if (submitButton) {
+        submitButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Get all required fields
+            const requiredFields = document.querySelectorAll('input[required], input[placeholder*="*"], textarea[placeholder*="*"]');
+            let isValid = true;
+            
+            requiredFields.forEach(field => {
+                if (!field.value.trim()) {
+                    field.classList.add('border-red-500');
+                    isValid = false;
+                } else {
+                    field.classList.remove('border-red-500');
+                }
+            });
+            
+            if (isValid) {
+                // Show success message
+                alert('Sifarişiniz uğurla qəbul edildi! Tezliklə sizinlə əlaqə saxlanılacaq.');
+                // Redirect to success page or home
+                window.location.href = 'thank-you.html';
+            } else {
+                alert('Zəhmət olmasa, bütün vacib sahələri doldurun.');
+            }
+        });
+    }
+
+    // Add required attribute to required fields
+    document.querySelectorAll('input[placeholder*="*"], textarea[placeholder*="*"]').forEach(field => {
+        field.setAttribute('required', '');
+    });
+}
+
+// Contact Page Functions
+function initContactPage() {
+    // --- CONTACT FORM LOGIC ---
+    const contactForm = document.getElementById('contact-form');
+    const formStatus = document.getElementById('form-status');
+
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(contactForm);
+            const data = Object.fromEntries(formData);
+            
+            // Show loading state
+            const submitBtn = contactForm.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin w-4 h-4"></i> Göndərilir...';
+            submitBtn.disabled = true;
+            
+            // Simulate form submission (replace with actual API call)
+            setTimeout(() => {
+                // Show success message
+                formStatus.innerHTML = '<span class="text-green-600"><i class="fas fa-check-circle w-4 h-4"></i> Mesajınız uğurla göndərildi!</span>';
+                
+                // Reset form
+                contactForm.reset();
+                
+                // Reset button
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+                
+                // Clear status message after 5 seconds
+                setTimeout(() => {
+                    formStatus.innerHTML = '';
+                }, 5000);
+            }, 2000);
+        });
+    }
+}
+
+// Index Page Functions
+function initIndexPage() {
+    // --- SLIDER LOGIC ---
+    const slides = [
+        {
+            image: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=2000&auto=format&fit=crop",
+            title: "Premium mebel istehsalı: Estetika və funksionallığın sərhədsiz harmoniyası",
+            nextTitle: "Mətbəx Həlləri"
+        },
+        {
+            image: "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?q=80&w=2000&auto=format&fit=crop",
+            title: "Mətbəxiniz üçün mükəmməl həllər: Dad və dizaynın görüşdüyü məkan",
+            nextTitle: "Yataq Otağı"
+        },
+        {
+            image: "https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=2000&auto=format&fit=crop",
+            title: "Rahatlıq və şıklığın ünvanı: Yuxularınızı bəzəyən yataq otaqları",
+            nextTitle: "Premium Dizayn"
+        }
+    ];
+
+    let currentSlide = 0;
+    let progress = 0;
+    let sliderInterval;
+    const duration = 5000; // 5 seconds per slide
+    const updateInterval = 50; // Update progress bar every 50ms
+
+    const heroBg = document.getElementById('hero-bg');
+    const heroTitle = document.getElementById('hero-title');
+    const nextSlideImg = document.getElementById('next-slide-img');
+    const nextSlideTitle = document.getElementById('next-slide-title');
+    const progressBar = document.getElementById('slider-progress');
+
+    // SYNC HEIGHTS FUNCTION
+    function syncHeights() {
+        const textPanel = document.getElementById('hero-text-panel');
+        const slideCard = document.getElementById('next-slide-card');
+        if(textPanel && slideCard) {
+            slideCard.style.height = `${textPanel.offsetHeight}px`;
+        }
+    }
+
+    function startSlider() {
+        clearInterval(sliderInterval);
+        progress = 0;
+        updateNextSlidePreview();
+        syncHeights(); // Sync initially
+        
+        sliderInterval = setInterval(() => {
+            progress += (updateInterval / duration) * 100;
+            if (progressBar) progressBar.style.width = `${progress}%`;
+
+            if (progress >= 100) {
+                changeSlide();
+                progress = 0;
+                if (progressBar) progressBar.style.width = '0%';
+            }
+        }, updateInterval);
+    }
+
+    function changeSlide() {
+        currentSlide = (currentSlide + 1) % slides.length;
+        const slide = slides[currentSlide];
+
+        // Fade out
+        if (heroBg) heroBg.style.opacity = '0';
+        
+        setTimeout(() => {
+            // Change Content
+            if (heroBg) heroBg.src = slide.image;
+            if (heroTitle) heroTitle.textContent = slide.title;
+            
+            // Fade in
+            if (heroBg) {
+                heroBg.onload = () => {
+                    heroBg.style.opacity = '1';
+                };
+                
+                // Fallback if cached
+                if(heroBg.complete) heroBg.style.opacity = '1';
+            }
+
+            updateNextSlidePreview();
+            
+            // Sync heights after text content change
+            setTimeout(syncHeights, 50); 
+        }, 500); // Wait for fade out
+    }
+
+    function forceNextSlide() {
+        progress = 100; // Force trigger
+    }
+
+    function updateNextSlidePreview() {
+        const nextIndex = (currentSlide + 1) % slides.length;
+        const nextSlide = slides[nextIndex];
+        
+        if (nextSlideImg) nextSlideImg.src = nextSlide.image;
+        if (nextSlideTitle) nextSlideTitle.textContent = nextSlide.nextTitle;
+    }
+
+    // --- NUMBER COUNTER ANIMATION ---
+    function initCounters() {
+        const counters = document.querySelectorAll('.counter');
+        const speed = 200; // The lower the slower
+
+        const counterObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const counter = entry.target;
+                    const target = +counter.getAttribute('data-target');
+                    
+                    const updateCount = () => {
+                        const count = +counter.innerText;
+                        const inc = target / speed;
+
+                        if (count < target) {
+                            counter.innerText = Math.ceil(count + inc);
+                            setTimeout(updateCount, 20);
+                        } else {
+                            counter.innerText = target;
+                        }
+                    };
+                    updateCount();
+                    observer.unobserve(counter);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        counters.forEach(counter => {
+            counterObserver.observe(counter);
+        });
+    }
+
+    // Start slider and other animations
+    if (heroBg || heroTitle) {
+        startSlider();
+        initCounters();
+        window.onresize = syncHeights; // Sync on resize
+    }
+}
+
+// Project Detail Page Functions
+function initProjectDetailPage() {
+    // --- GALLERY SLIDER ---
+    let currentSlide = 0;
+    const totalSlides = 4;
+
+    function updateSlider() {
+        const slider = document.getElementById('gallery-slider');
+        if (slider) {
+            slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+            
+            // Update thumbnails
+            const thumbnails = document.querySelectorAll('[onclick^="goToSlide"]');
+            thumbnails.forEach((thumb, index) => {
+                if (index === currentSlide) {
+                    thumb.classList.remove('opacity-60');
+                    thumb.classList.add('opacity-100', 'border-brand');
+                    thumb.classList.remove('border-transparent');
+                } else {
+                    thumb.classList.add('opacity-60');
+                    thumb.classList.remove('opacity-100', 'border-brand');
+                    thumb.classList.add('border-transparent');
+                }
+            });
+        }
+    }
+
+    // Make slider functions global for onclick handlers
+    window.nextSlide = function() {
+        currentSlide = (currentSlide + 1) % totalSlides;
+        updateSlider();
+    };
+
+    window.previousSlide = function() {
+        currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+        updateSlider();
+    };
+
+    window.goToSlide = function(slideIndex) {
+        currentSlide = slideIndex;
+        updateSlider();
+    };
+
+    // Initialize slider if on project detail page
+    if (document.getElementById('gallery-slider')) {
+        updateSlider();
+    }
+}
+
+
 // Export functions for global use
 window.Fabbrica = {
     switchLanguage,
     showNotification,
     cart,
     formatPrice,
-    debounce
+    debounce,
+    generateOrderNumber,
+    addThankYouAnimations
 };

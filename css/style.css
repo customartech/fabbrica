@@ -278,3 +278,214 @@ body {
     font-size: 12px;
     color: #9ca3af;
 }
+
+/* Thank You Page Styles */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Thank you page specific - make all content visible by default */
+.bg-gradient-to-br .reveal,
+.py-16 .reveal,
+.py-20 .reveal {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.success-icon {
+    animation: scaleIn 0.6s ease-out;
+}
+
+@keyframes scaleIn {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.step-card {
+    transition: all 0.3s ease;
+}
+
+.step-card:hover {
+    transform: translateY(-5px);
+}
+
+.step-card:hover .step-icon {
+    background-color: rgb(189, 184, 137);
+    color: white;
+}
+
+.step-icon {
+    transition: all 0.3s ease;
+}
+
+.contact-card {
+    transition: all 0.3s ease;
+}
+
+.contact-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.btn-brand {
+    transition: all 0.3s ease;
+}
+
+.btn-brand:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(189, 184, 137, 0.3);
+}
+
+.btn-secondary {
+    transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.order-number {
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    border: 1px solid rgba(189, 184, 137, 0.2);
+    box-shadow: 0 4px 15px rgba(189, 184, 137, 0.1);
+}
+
+@media (max-width: 768px) {
+    .success-icon {
+        width: 5rem;
+        height: 5rem;
+    }
+    
+    .step-card {
+        margin-bottom: 2rem;
+    }
+}
+
+/* Shop Page Styles */
+.scroll-reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
+}
+
+.scroll-reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Shop Dropdown Menu */
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 280px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+    z-index: 50;
+    margin-top: 8px;
+}
+
+.dropdown-menu-inner {
+    padding: 8px;
+}
+
+.dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #1e293b;
+    transition: all 0.2s ease;
+}
+
+.dropdown-item:hover {
+    background: #f8fafc;
+    color: #b8b889;
+}
+
+.dropdown-icon {
+    width: 32px;
+    height: 32px;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+.dropdown-title {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 2px;
+}
+
+.dropdown-desc {
+    font-size: 12px;
+    color: #64748b;
+}
+
+/* Shop specific logo width */
+.logo-width {
+    width: 180px;
+    height: auto;
+}
+
+/* Contact Page Styles */
+.custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: rgb(189, 184, 137);
+    border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: rgb(169, 169, 169);
+}
+
+/* Glass Panel */
+.glass-panel {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* About Page Styles */
+.parallax {
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.team-card {
+    transition: all 0.3s ease;
+}
+
+.team-card:hover {
+    transform: translateY(-10px);
+}
